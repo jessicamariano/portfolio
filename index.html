@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  © 2026 Jéssica Mariano · Todos os direitos reservados      ║
+  ║  Licença: CC BY-NC-SA 4.0                                    ║
+  ║  Reprodução não autorizada é vedada.                         ║
+  ║  jessical.mariano@icloud.com                                 ║
+  ║  linkedin.com/in/jessicamarianos                             ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Jéssica Mariano — Gerente de Projetos com mais de 12 anos conduzindo projetos complexos em ambientes digitais e corporativos. Especialista em transformação digital, metodologias ágeis e governança de entregas.">
+<meta name="keywords" content="gerente de projetos, gestão ágil, scrum, kanban, power bi, jira, azure devops, transformação digital">
+<meta property="og:title" content="Jéssica Mariano · Gerente de Projetos">
+<meta property="og:description" content="Transformando operações complexas em entregas escaláveis.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jessicamariano.com.br">
+<meta property="og:image" content="https://jessicamariano.com.br/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jéssica Mariano · Gerente de Projetos">
+<meta name="twitter:description" content="Transformando operações complexas em entregas escaláveis.">
+<title>Jéssica Mariano · Gerente de Projetos</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a0a0f'/><text y='21' x='9' font-size='14' fill='%23e8e8f0' font-family='sans-serif' font-weight='600'>JM</text></svg>">
+<link rel="canonical" href="https://jessicamariano.com.br">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─────────────────────────────────────────
+   DESIGN TOKENS
+   Paleta: dark editorial premium
+   Tipografia: Plus Jakarta Sans + Inter + IBM Plex Mono
+───────────────────────────────────────── */
+:root {
+  /* Backgrounds — branco quente, não frio */
+  --bg-0: #f5f4f0;
+  --bg-1: #efede8;
+  --bg-2: #e8e6e0;
+  --bg-3: #e0ded8;
+
+  /* Bordas — sutis sobre fundo claro */
+  --line-0: rgba(0,0,0,0.06);
+  --line-1: rgba(0,0,0,0.09);
+  --line-2: rgba(0,0,0,0.14);
+
+  /* Texto — hierarquia clara */
+  --t-0: #111118;   /* headings — quase preto */
+  --t-1: #2a2a35;   /* body */
+  --t-2: #5a5a6e;   /* secondary */
+  --t-3: #8e8ea0;   /* muted / labels */
+
+  /* Acento ciano — mais escuro para funcionar no claro */
+  --cyan: #0098b8;
+  --cyan-dim: rgba(0,152,184,0.08);
+  --cyan-line: rgba(0,152,184,0.2);
+
+  /* Fontes */
+  --f-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --f-body: 'Inter', system-ui, sans-serif;
+  --f-mono: 'IBM Plex Mono', monospace;
+
+  /* Easing — suave, orgânico */
+  --ease: cubic-bezier(0.25, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-full: 9999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg-0);
+  color: var(--t-1);
+  font-family: var(--f-body);
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: var(--cyan-dim); color: var(--cyan); }
+a { text-decoration: none; color: inherit; }
+
+/* ─── NAVIGATION ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 4rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(245, 244, 240, 0.92);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom-color: var(--line-0);
+}
+.nav-logo {
+  font-family: var(--f-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--cyan);
+}
+.nav-logo em {
+  font-style: normal;
+  color: var(--cyan);
+  font-weight: 400;
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-3);
+  transition: color 0.2s var(--ease);
+}
+.nav-links a:hover { color: var(--t-0); }
+.nav-contact {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-2);
+  border: 1px solid var(--line-2);
+  padding: 0.45rem 1rem;
+  border-radius: var(--r-sm);
+  transition: all 0.2s var(--ease);
+}
+.nav-contact:hover {
+  color: var(--t-0);
+  border-color: var(--line-2);
+  background: var(--bg-2);
+}
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4rem;
+  padding-top: 64px;
+  position: relative;
+}
+
+/* Noise texture sutil — premium, não decorativo */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+
+
+.hero-name {
+  font-family: var(--f-heading);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  color: var(--t-0);
+  margin-bottom: 0.15em;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: appear 0.8s var(--ease-out) 0.5s forwards;
+}
+.hero-name strong {
+  font-weight: 600;
+  display: block;
+}
+
+.hero-position {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--t-3);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: appear 0.7s var(--ease-out) 0.7s forwards;
+}
+.hero-position::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--cyan);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.hero-statement {
+  font-size: clamp(0.92rem, 1.4vw, 1rem);
+  font-weight: 400;
+  line-height: 1.82;
+  color: var(--t-2);
+  max-width: 520px;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: appear 0.7s var(--ease-out) 0.9s forwards;
+}
+.hero-statement strong {
+  color: var(--t-1);
+  font-weight: 500;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: appear 0.7s var(--ease-out) 1.1s forwards;
+}
+
+/* ─── BUTTONS ─── */
+.btn-fill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--t-0);
+  color: var(--bg-0);
+  font-family: var(--f-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: var(--r-sm);
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.btn-fill:hover { opacity: 0.82; transform: translateY(-1px); }
+.btn-fill:active { transform: scale(0.98); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  color: var(--t-2);
+  font-family: var(--f-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-sm);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.btn-outline:hover {
+  color: var(--t-0);
+  border-color: var(--line-2);
+  background: var(--bg-2);
+}
+.btn-outline .arr { transition: transform 0.2s var(--ease); }
+.btn-outline:hover .arr { transform: translateX(3px); }
+
+/* Hero metrics — big numbers protagonistas */
+.hero-metrics {
+  display: flex;
+  gap: 0;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line-0);
+  opacity: 0;
+  animation: appear 0.4s var(--ease-out) 1.3s forwards;
+}
+.hm-item {
+  flex: 1;
+  padding: 1.5rem 2rem 1.5rem 0;
+  border-right: 1px solid var(--line-0);
+  margin-right: 2rem;
+}
+.hm-item:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+.hm-value {
+  font-family: var(--f-heading);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--t-0);
+  line-height: 1;
+  display: block;
+  opacity: 0;
+  transform: translateY(10px);
+  /* transição controlada pelo JS */
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hm-value.visible {
+  opacity: 1;
+  transform: none;
+}
+.hm-label {
+  font-family: var(--f-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-3);
+  display: block;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  opacity: 0;
+  /* label aparece só depois do número */
+  transition: opacity 0.5s cubic-bezier(0.25, 0, 0, 1);
+}
+.hm-label.visible {
+  opacity: 1;
+}
+
+@keyframes appear {
+  to { opacity: 1; transform: none; }
+}
+
+section {
+  padding: 7rem 4rem;
+  position: relative;
+  scroll-margin-top: 64px;
+}
+
+/* Alternância de fundo — diferença sutil, não agressiva */
+.bg-alt { background: var(--bg-1); }
+
+/* Linha divisória editorial */
+.divider {
+  height: 1px;
+  background: var(--line-0);
+  margin: 0 4rem;
+}
+
+/* Label de seção */
+.s-label {
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.s-label::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 1px;
+  background: var(--cyan);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* Heading de seção */
+.s-heading {
+  font-family: var(--f-heading);
+  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--t-0);
+  margin-bottom: 1rem;
+}
+.s-heading strong {
+  font-weight: 700;
+  color: var(--t-0);
+}
+.s-heading em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--t-0);
+}
+
+/* ─── FADE-IN AO SCROLL ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+}
+.fade-up.visible { opacity: 1; transform: none; }
+
+/* ─── SOBRE ─── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+  margin-top: 3.5rem;
+}
+.about-body p {
+  font-size: 0.96rem;
+  line-height: 1.85;
+  color: var(--t-2);
+  margin-bottom: 1.25rem;
+}
+.about-body p strong { color: var(--t-1); font-weight: 500; }
+.about-body p em { font-style: normal; color: var(--t-1); }
+
+.about-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1px; /* cards separados por linha fina */
+}
+.acard {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line-0);
+  transition: padding-left 0.2s var(--ease);
+}
+.acard:first-child { border-top: 1px solid var(--line-0); }
+.acard:hover { padding-left: 0.5rem; }
+.acard-label {
+  font-family: var(--f-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-3);
+  margin-bottom: 0.5rem;
+}
+.acard-title {
+  font-family: var(--f-heading);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--t-0);
+  margin-bottom: 0.45rem;
+}
+.acard p {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--t-2);
+}
+
+.exp-bullets {
+  list-style: none;
+  margin-bottom: 1.75rem;
+}
+.exp-bullets li {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--t-2);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line-0);
+  display: flex;
+  gap: 0.75rem;
+}
+.exp-bullets li:last-child { border-bottom: none; }
+.exp-bullets li::before {
+  content: '–';
+  color: var(--t-3);
+  flex-shrink: 0;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  margin-top: 0.1rem;
+}
+.exp-kpis {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.kpi {
+  padding: 0.75rem 1.1rem;
+  background: var(--bg-1);
+  border: 1px solid var(--line-0);
+  border-radius: var(--r-sm);
+  min-width: 90px;
+}
+.kpi-val {
+  font-family: var(--f-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--t-0);
+  display: block;
+  line-height: 1;
+}
+.kpi-lbl {
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--t-3);
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.ptag {
+  font-family: var(--f-mono);
+  font-size: 0.57rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--t-3);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-sm);
+}
+
+.pstat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line-0);
+  font-size: 0.78rem;
+}
+.pstat:last-child { border-bottom: none; }
+.pstat-lbl { color: var(--t-3); font-family: var(--f-body); font-size: 0.78rem; }
+.pstat-val {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--t-1);
+  font-weight: 500;
+}
+
+/* ─── STACK ─── */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 3.5rem;
+}
+.scat-label {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line-0);
+}
+.scat-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.sitem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line-0);
+  transition: opacity 0.15s;
+}
+.sitem:last-child { border-bottom: none; }
+.sitem:hover { opacity: 0.75; }
+.sitem-name {
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  color: var(--t-1);
+}
+.sdots {
+  display: flex;
+  gap: 3px;
+}
+.sd {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--line-1);
+}
+.sd.on { background: var(--t-3); }
+
+
+/* ─── FORMAÇÃO ─── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  margin-top: 3.5rem;
+}
+.edu-col-label {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1.25rem;
+}
+.edu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.edu-row {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line-0);
+  transition: padding-left 0.2s var(--ease);
+}
+.edu-row:first-child { border-top: 1px solid var(--line-0); }
+.edu-row:hover { padding-left: 0.5rem; }
+.edu-degree {
+  font-family: var(--f-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--t-0);
+  margin-bottom: 0.2rem;
+  line-height: 1.35;
+}
+.edu-school {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--t-3);
+}
+.edu-year {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  color: var(--t-3);
+  margin-top: 0.4rem;
+  display: block;
+}
+.cert-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  border: 1px solid var(--line-0);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.cert {
+  padding: 0.7rem 0.9rem;
+  background: var(--bg-2);
+  font-family: var(--f-body);
+  font-size: 0.78rem;
+  color: var(--t-2);
+  border-right: 1px solid var(--line-0);
+  border-bottom: 1px solid var(--line-0);
+  transition: background 0.15s, color 0.15s;
+}
+.cert:hover { background: var(--bg-3); color: var(--t-1); }
+.cert:nth-child(2n) { border-right: none; }
+.cert:nth-last-child(-n+2) { border-bottom: none; }
+
+/* ─── CONTATO ─── */
+#contact {
+  text-align: center;
+  padding: 9rem 4rem;
+}
+.contact-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.contact-label {
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+}
+.contact-heading {
+  font-family: var(--f-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--t-0);
+  margin-bottom: 1.25rem;
+}
+.contact-heading strong { font-weight: 600; }
+.contact-sub {
+  font-size: 0.95rem;
+  line-height: 1.78;
+  color: var(--t-2);
+  margin-bottom: 2.75rem;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.c-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.25rem;
+  color: var(--t-2);
+  font-family: var(--f-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-sm);
+  transition: all 0.2s var(--ease);
+}
+.c-link svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.c-link:hover {
+  color: var(--t-0);
+  border-color: var(--line-2);
+  background: var(--bg-2);
+}
+
+/* ─── MOBILE MENU ─── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--t-2);
+  transition: transform 0.25s var(--ease), opacity 0.2s var(--ease), width 0.2s var(--ease);
+  transform-origin: center;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); background: var(--t-0); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; width: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: var(--t-0); }
+
+/* Mobile overlay menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 58px;
+  background: rgba(245, 244, 240, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 99;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+  gap: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease);
+}
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-menu a {
+  font-family: var(--f-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--t-2);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line-0);
+  width: 100%;
+  display: block;
+  transition: color 0.15s var(--ease), padding-left 0.2s var(--ease);
+}
+.mobile-menu a:first-child { border-top: 1px solid var(--line-0); }
+.mobile-menu a:hover { color: var(--t-0); padding-left: 0.5rem; }
+.mobile-menu-contact {
+  margin-top: 2rem;
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-3);
+}
+
+/* cursor:none apenas em dispositivos não-touch */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+}
+#dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 7px; height: 7px;
+  background: var(--cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s var(--ease-out), height 0.2s var(--ease-out), opacity 0.2s;
+  opacity: 0.9;
+}
+#dot-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(0,152,184,0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out), border-color 0.2s;
+  opacity: 0;
+}
+#dot-label {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9997;
+  font-family: var(--f-mono);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  opacity: 0;
+  transform: translate(14px, -50%);
+  transition: opacity 0.15s var(--ease);
+  white-space: nowrap;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 1.5rem 4rem;
+  border-top: 1px solid var(--line-0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer p {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--t-3);
+}
+
+/* ─── ACCORDION ─── */
+.acc-list {
+  margin-top: 3rem;
+}
+.acc-item {
+  border-bottom: 1px solid var(--line-0);
+}
+.acc-item:first-child {
+  border-top: 1px solid var(--line-0);
+}
+.acc-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1.6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: left;
+  transition: background 0.15s var(--ease);
+}
+.acc-trigger:hover {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.acc-trigger[aria-expanded="true"] {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.acc-trigger-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+.acc-period {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.acc-company {
+  font-family: var(--f-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--t-1);
+  letter-spacing: -0.01em;
+}
+.acc-type {
+  font-weight: 400;
+  color: var(--t-3);
+}
+.acc-role {
+  font-family: var(--f-heading);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--t-0);
+  line-height: 1.25;
+}
+.acc-trigger-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+.acc-tags-inline {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+}
+.acc-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  border: 1px solid var(--cyan-line);
+  border-radius: 50%;
+  transition: transform 0.35s var(--ease-out), background 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+  animation: bounceHint 2.5s var(--ease-out) 1.5s 2;
+}
+.acc-icon svg {
+  width: 14px;
+  height: 14px;
+}
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(4px); }
+  60% { transform: translateY(-2px); }
+}
+.acc-trigger[aria-expanded="true"] .acc-icon {
+  transform: rotate(180deg);
+  background: rgba(0,200,240,0.15);
+  box-shadow: 0 0 12px rgba(0,200,240,0.2);
+  animation: none;
+}
+.acc-trigger:hover .acc-icon {
+  background: rgba(0,200,240,0.14);
+  box-shadow: 0 0 10px rgba(0,200,240,0.18);
+  animation: none;
+}
+
+/* Corpo colapsável */
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s var(--ease-out);
+}
+.acc-body.open {
+  grid-template-rows: 1fr;
+}
+.acc-body-inner {
+  overflow: hidden;
+  padding-bottom: 0;
+  transition: padding-bottom 0.35s var(--ease-out);
+}
+.acc-body.open .acc-body-inner {
+  padding-bottom: 1.75rem;
+}
+.acc-desc {
+  font-size: 0.9rem;
+  line-height: 1.78;
+  color: var(--t-2);
+  margin-bottom: 1.25rem;
+}
+.acc-desc:last-child {
+  margin-bottom: 0;
+}
+.proj-stats-acc {
+  border: 1px solid var(--line-0);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  max-width: 480px;
+}
+.proj-stats-acc .pstat {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--line-0);
+}
+.proj-stats-acc .pstat:last-child {
+  border-bottom: none;
+}
+
+#diff-acc .acc-role {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  margin-top: 0.1rem;
+}
+#diff-acc .acc-period {
+  font-size: 0.58rem;
+  opacity: 0.7;
+}
+
+/* ─── RESPONSIVE ─── */
+/* ═══════════════════════════════════════════
+   TABLET — 1024px
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 0 2rem; }
+  section { padding: 5.5rem 2rem; }
+  #hero { padding: 0 2rem; padding-top: 64px; }
+  .divider { margin: 0 2rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .exp-entry { grid-template-columns: 1fr; gap: 1.25rem; }
+  .stack-grid { grid-template-columns: 1fr 1fr; }
+  .edu-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-metrics { gap: 1.5rem; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE DEDICADO — 768px e abaixo
+   Layout completamente repensado para toque
+═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Base ── */
+  html { font-size: 16px; }
+  body { cursor: auto; }
+  #dot, #dot-ring, #dot-label { display: none; }
+
+  /* ── Nav ── */
+  nav { padding: 0 1.25rem; height: 58px; }
+  .nav-links { display: none; }
+  .nav-contact { display: none; }
+  .nav-toggle {
+    display: flex;
+    cursor: pointer; /* FIX #2 — cursor:none estava no nav-toggle */
+    min-height: 44px; /* FIX #3 — área de toque WCAG */
+    min-width: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+  nav.scrolled { height: 58px; }
+
+  /* ── Sections ── */
+  section { padding: 4rem 1.25rem; scroll-margin-top: 58px; }
+  #hero { padding: 0 1.25rem; padding-top: 58px; min-height: 100svh; }
+  .divider { margin: 0 1.25rem; }
+
+  /* ── Hero ── */
+  .hero-inner { max-width: 100%; }
+  .hero-label { font-size: 0.6rem; margin-bottom: 1.5rem; }
+  .hero-name {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    margin-bottom: 0.15em;
+  }
+  .hero-position { font-size: 0.6rem; margin-bottom: 1.75rem; }
+  .hero-statement {
+    font-size: 0.95rem;
+    line-height: 1.78;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.65rem;
+    align-items: stretch;
+  }
+  /* FIX #3 — min-height 44px para área de toque WCAG */
+  .btn-fill, .btn-outline {
+    justify-content: center;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.85rem;
+    width: 100%;
+    min-height: 44px;
+  }
+
+  /* Big numbers — grade 2×2 */
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 3rem;
+    padding-top: 0;
+    border-top: none;
+    /* Cancela a animation CSS do desktop que mantém opacity:0 no container */
+    animation: none;
+    opacity: 1;
+  }
+  /* FIX #7 — lógica de borda corrigida: sem sobreposição */
+  .hm-item {
+    padding: 1.25rem;
+    border-right: 1px solid var(--line-0);
+    border-bottom: 1px solid var(--line-0);
+    margin: 0;
+  }
+  .hm-item:nth-child(1) { border-top: 1px solid var(--line-0); border-left: 1px solid var(--line-0); border-radius: var(--r-md) 0 0 0; }
+  .hm-item:nth-child(2) { border-top: 1px solid var(--line-0); border-right: 1px solid var(--line-0); border-left: none; border-radius: 0 var(--r-md) 0 0; }
+  .hm-item:nth-child(3) { border-top: none; border-left: 1px solid var(--line-0); border-radius: 0 0 0 var(--r-md); }
+  .hm-item:nth-child(4) { border-top: none; border-left: none; border-radius: 0 0 var(--r-md) 0; }
+  .hm-item:last-child { border-right: 1px solid var(--line-0); margin-right: 0; padding-right: 1.25rem; }
+  .hm-value {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+    letter-spacing: -0.04em;
+  }
+  .hm-label {
+    font-size: 0.55rem;
+    margin-top: 0.35rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Sobre ── */
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-body p { font-size: 0.95rem; line-height: 1.82; }
+  .acard { padding: 1.25rem 0; }
+  .acard-title { font-size: 0.9rem; }
+  .acard p { font-size: 0.84rem; }
+  /* FIX #9 — desativa hover transform em touch */
+  .about-card:hover { transform: none; }
+  .s-heading {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    letter-spacing: -0.025em;
+  }
+
+  /* ── Accordion ── */
+  .acc-trigger {
+    padding: 1.25rem 0;
+    gap: 1rem;
+    align-items: flex-start;
+    min-height: 44px; /* FIX #3 — toque WCAG */
+    cursor: pointer;
+  }
+  .acc-trigger:hover {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .acc-trigger[aria-expanded="true"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* FIX #1 — tags visíveis no mobile, reorganizadas abaixo do título */
+  .acc-tags-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.4rem;
+    order: 3; /* aparece após o role */
+  }
+  .acc-trigger-left {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .acc-period { font-size: 0.58rem; }
+  .acc-company { font-size: 0.8rem; }
+  .acc-role { font-size: 1rem; }
+  .acc-icon {
+    width: 24px; height: 24px;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    cursor: pointer;
+  }
+  .acc-body-inner { padding-bottom: 0; }
+  .acc-body.open .acc-body-inner { padding-bottom: 1.5rem; }
+  .acc-desc { font-size: 0.9rem; line-height: 1.78; }
+
+  /* FIX #4 — exp-bullets li sem font-size no mobile */
+  .exp-bullets li {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    padding: 0.65rem 0;
+  }
+
+  /* KPIs */
+  .exp-kpis {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+  .kpi {
+    flex: 1;
+    min-width: calc(50% - 0.25rem);
+    padding: 0.7rem 0.9rem;
+  }
+  .kpi-val { font-size: 1.3rem; }
+  .kpi-lbl { font-size: 0.52rem; }
+
+  /* Stats accordion projetos */
+  .proj-stats-acc { max-width: 100%; }
+  .pstat { font-size: 0.78rem; }
+  .pstat-lbl { font-size: 0.75rem; }
+  .pstat-val { font-size: 0.68rem; }
+
+  /* ── Stack ── */
+  .stack-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .sitem {
+    padding: 0.75rem 0;
+    min-height: 44px; /* FIX #3 — toque */
+    align-items: center;
+  }
+  .sitem-name { font-size: 0.88rem; }
+
+  /* ── Diferenciais ── */
+  #diff-acc .acc-role { font-size: 1.05rem; }
+
+  /* ── Formação ── */
+  .edu-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .edu-degree { font-size: 0.88rem; line-height: 1.4; }
+  .edu-row { padding: 1.1rem 0; }
+  .cert-list { grid-template-columns: 1fr; gap: 1px; }
+  .cert { border-right: none; font-size: 0.8rem; padding: 0.75rem 0.9rem; }
+
+  /* ── Contato ── */
+  #contact { padding: 5rem 1.25rem; }
+  /* FIX #5 — contact-inner sem max-width que limite mobile */
+  .contact-inner { max-width: 100%; }
+  .contact-heading {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+    letter-spacing: -0.03em;
+  }
+  .contact-sub { font-size: 0.92rem; }
+  .contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+  .c-link {
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.85rem;
+    min-height: 44px; /* FIX #3 — toque */
+  }
+
+  /* ── Footer ── */
+  footer { padding: 1.25rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+
+  /* ── Mobile menu overlay ── */
+  .mobile-menu a {
+    font-size: 1.6rem;
+    min-height: 56px; /* FIX #8 — área de toque generosa para links grandes */
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE PEQUENO — 375px e abaixo
+═══════════════════════════════════════════ */
+@media (max-width: 375px) {
+  section { padding: 3.5rem 1rem; }
+  #hero { padding: 0 1rem; padding-top: 58px; }
+  .divider { margin: 0 1rem; }
+  .hero-name { font-size: 13vw; }
+  .s-heading { font-size: 1.4rem; }
+  .contact-heading { font-size: 1.6rem; }
+  .hm-value { font-size: 1.9rem; }
+  .kpi { min-width: 100%; }
+}
+
+
+/* ─── PROTEÇÃO DE IMPRESSÃO ─── */
+@media print {
+  body { display: none !important; }
+}
+
+/* ─── PILL DE DIREITOS AUTORAIS (clique direito) ─── */
+#copyright-pill {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--bg-3);
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-full);
+  padding: 0.5rem 1.1rem;
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--t-2);
+  z-index: 9990;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease-out);
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+#copyright-pill.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ─── AVISO MOBILE ─── */
+#mobile-notice {
+  display: block;
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  left: auto;
+  max-width: 360px;
+  width: calc(100% - 3rem);
+  background: var(--bg-1);
+  border: 1px solid var(--line-1);
+  border-radius: var(--r-lg);
+  padding: 1rem 1.1rem;
+  z-index: 9980;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+#mobile-notice.visible {
+  opacity: 1;
+  transform: none;
+}
+#mobile-notice-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+#mobile-notice-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background: var(--cyan-dim);
+  border: 1px solid var(--cyan-line);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.05rem;
+}
+#mobile-notice-icon svg {
+  width: 13px; height: 13px;
+  stroke: var(--cyan);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#mobile-notice-body {
+  flex: 1;
+  min-width: 0;
+}
+#mobile-notice-title {
+  font-family: var(--f-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--t-0);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.2rem;
+}
+#mobile-notice-text {
+  font-family: var(--f-body);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--t-2);
+}
+#mobile-notice-close {
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  color: var(--t-3);
+  flex-shrink: 0;
+  line-height: 1;
+  font-size: 1rem;
+  transition: color 0.15s;
+  margin-top: -0.1rem;
+}
+#mobile-notice-close:hover { color: var(--t-1); }
+
+
+
+</style>
+</head>
+<body>
+<div id="dot"></div>
+<div id="dot-ring"></div>
+<div id="dot-label"></div>
+
+<!-- Pill de direitos autorais -->
+<div id="copyright-pill">© Jéssica Mariano · CC BY-NC-SA 4.0</div>
+
+<!-- Aviso de experiência desktop -->
+<div id="mobile-notice" role="status" aria-live="polite">
+  <div id="mobile-notice-inner">
+    <div id="mobile-notice-icon">
+      <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+    </div>
+    <div id="mobile-notice-body">
+      <div id="mobile-notice-title">Experiência otimizada para desktop</div>
+      <div id="mobile-notice-text">Este portfólio foi concebido para telas maiores. Para aproveitar integralmente as animações, hierarquia visual e detalhes de design, recomendamos acessar em um desktop ou notebook.</div>
+    </div>
+    <button type="button" id="mobile-notice-close" aria-label="Fechar aviso">✕</button>
+  </div>
+</div>
+
+<!-- NAVEGAÇÃO -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Jéssica <em>Mariano</em></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#formacao">Formação</a></li>
+  </ul>
+  <a href="#contato" class="nav-contact">Contato</a>
+  <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#sobre" class="mobile-nav-link">Sobre</a>
+  <a href="#experiencia" class="mobile-nav-link">Experiência</a>
+  <a href="#projetos" class="mobile-nav-link">Projetos</a>
+  <a href="#stack" class="mobile-nav-link">Stack</a>
+  <a href="#formacao" class="mobile-nav-link">Formação</a>
+  <a href="#contato" class="mobile-nav-link">Contato</a>
+  <div class="mobile-menu-contact">jessical.mariano@icloud.com</div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <h1 class="hero-name">
+      Jéssica<br>
+      <strong>Mariano</strong>
+    </h1>
+    <p class="hero-position">Gerente de Projetos · Caruaru, PE</p>
+    <p class="hero-statement">
+      Mais de 12 anos conduzindo projetos e negócios de alta complexidade com <strong>governança estruturada, visão de negócio e entrega que importa</strong>. De redes nacionais de varejo a startups SaaS e Consultoria de Software.
+    </p>
+    <div class="hero-actions">
+      <a href="#projetos" class="btn-fill">Ver Projetos e Impacto</a>
+      <a href="mailto:jessical.mariano@icloud.com" class="btn-outline">Entrar em Contato <span class="arr">→</span></a>
+    </div>
+    <div class="hero-metrics">
+      <div class="hm-item">
+        <span class="hm-value counter" data-target="115" data-suffix="+">0</span>
+        <span class="hm-label">Unidades em Rollout</span>
+      </div>
+      <div class="hm-item">
+        <span class="hm-value counter" data-target="100" data-suffix="h+">0</span>
+        <span class="hm-label">Economia Mensal com IA</span>
+      </div>
+      <div class="hm-item">
+        <span class="hm-value counter" data-target="12" data-suffix="+">0</span>
+        <span class="hm-label">Anos de Experiência</span>
+      </div>
+      <div class="hm-item">
+        <span class="hm-value counter" data-target="9" data-suffix="">0</span>
+        <span class="hm-label">Projetos Simultâneos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOBRE -->
+<section id="sobre" class="bg-alt">
+  <div class="s-label">Sobre mim</div>
+  <h2 class="s-heading fade-up">Estratégia que se<br>traduz em <em>entrega real</em></h2>
+  <div class="about-grid">
+    <div class="about-body fade-up">
+      <p>Minha trajetória é construída sobre uma premissa simples: <strong>clareza de escopo, rigor de processo e entrega que importa</strong>. Não gerencio projetos, gerencio resultados.</p>
+      <p>Com mais de 12 anos em ambientes de alta complexidade, de redes nacionais de varejo a startups SaaS e consultoras de software, desenvolvi uma capacidade rara: <em>operar com igual precisão no nível estratégico e no nível operacional</em>.</p>
+      <p>Sei quando acelerar e quando pausar. Sei ler um stakeholder difícil, reestruturar um backlog caótico, blindar um cronograma e construir o processo metodológico que vai sustentar o projeto muito além da minha saída.</p>
+      <p>Formada em Administração. Pós-graduada em Gestão de Projetos. Pós-graduação em Gerenciamento de Projetos e Metodologias Ágeis em andamento na PUCRS. <strong>PSM I certificada, Lean Six Sigma Yellow Belt</strong> e uma visão de negócio que vai muito além do Jira.</p>
+    </div>
+    <div class="about-cards fade-up">
+      <div class="acard">
+        <div class="acard-label">Visão Sistêmica</div>
+        <h3 class="acard-title">Do escopo ao impacto</h3>
+        <p>Conduz o ciclo completo de gestão, da definição de requisitos à aprovação de QA, com governança estruturada e foco permanente no resultado de negócio.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-label">Agilidade Real</div>
+        <h3 class="acard-title">Metodologia que funciona</h3>
+        <p>Scrum, Kanban, Waterfall ou híbrido. A escolha é tática, não dogma. O que importa é entregar com previsibilidade e qualidade.</p>
+      </div>
+      <div class="acard">
+        <div class="acard-label">IA e Automação</div>
+        <h3 class="acard-title">PM do futuro, hoje</h3>
+        <p>Integrou IA ao fluxo de gestão gerando mais de 100h por mês de economia em documentação técnica, geração de QA e comunicação com stakeholders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="s-label">Trajetória Profissional</div>
+  <h2 class="s-heading fade-up">Experiência que<br><strong>constrói resultado</strong></h2>
+  <div class="acc-list" id="exp-acc">
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">Jan 2026 — Presente</span>
+          <span class="acc-company">Mukutu <span class="acc-type">· Consultoria e Software House</span></span>
+          <span class="acc-role">Gerente de Projetos de Software</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">Ágil</span><span class="ptag">Waterfall</span><span class="ptag">QA</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li>Gerencia portfólio de 9 projetos simultâneos para 7 clientes de diferentes portes e segmentos, com foco nos projetos estratégicos da agência, incluindo clientes do setor industrial com receita anual de R$ 2,7 bilhões e instituições educacionais de referência internacional.</li>
+              <li>Estruturou e montou do zero o processo de engenharia de requisitos da agência: levantamento de requisitos funcionais e não funcionais, elaboração de histórias de usuário, critérios de aceite e integração com QA, função inexistente antes da sua chegada.</li>
+              <li>Responsável pela governança de entregas: define escopo, conduz planejamento, controla cronograma e riscos e realiza aprovação final de QA antes de cada deploy, em projetos ágeis, waterfall e híbridos.</li>
+              <li>Desenvolveu a base metodológica da agência: modelos de status report, documentação de requisitos e critérios de aceite, atuando com a diretoria na definição de padrões institucionais de gestão.</li>
+              <li>Utiliza automações com IA integradas ao fluxo de gestão, com economia estimada de mais de 100 horas mensais em documentação técnica, geração de QA, histórias de usuário e comunicação com stakeholders.</li>
+              <li>Conduz interface estratégica com clientes: alinhamentos, follow-ups, gestão de expectativas e cumprimento de SLA, com autonomia na tomada de decisão sobre escopo e entregas.</li>
+              <li>Planeja e prioriza backlog de projetos e manutenções, definindo roadmap de entregas e assegurando alinhamento entre capacidade do time e expectativas do cliente.</li>
+            </ul>
+            <div class="exp-kpis">
+              <div class="kpi"><span class="kpi-val">9</span><span class="kpi-lbl">Projetos simultâneos</span></div>
+              <div class="kpi"><span class="kpi-val">100h+</span><span class="kpi-lbl">Economia/mês com IA</span></div>
+              <div class="kpi"><span class="kpi-val">R$2,7B</span><span class="kpi-lbl">Receita maior cliente</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">Ago 2024 — Dez 2025</span>
+          <span class="acc-company">Letalk <span class="acc-type">· SaaS B2B</span></span>
+          <span class="acc-role">Gerente de Projetos</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">OKR</span><span class="ptag">Parcerias</span><span class="ptag">SaaS</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li>Gerenciou portfólio de iniciativas estratégicas com gestão de OKRs e KPIs de performance. O canal de parcerias representou mais de 30% do new MRR mensal da empresa.</li>
+              <li>Liderou o projeto Programa MGM com aplicação de EAP, RACI e controle de cronograma, assegurando entregas dentro de escopo, prazo e padrões de qualidade.</li>
+              <li>Conduziu o projeto de implantação do Programa de Parcerias end-to-end, desde o planejamento até a operacionalização, com integração cross-funcional de Produto, Vendas, Marketing e Tecnologia.</li>
+              <li>Priorizou backlog e conduziu alinhamentos estratégicos com stakeholders de diferentes níveis hierárquicos, assegurando coerência entre entregas e objetivos corporativos.</li>
+              <li>Estruturou processos e playbooks operacionais para squads multidisciplinares, estabelecendo padrões de execução e previsibilidade de entregas.</li>
+              <li>Liderou cerimônias ágeis com foco em gestão de riscos, priorização e alinhamento entre times de produto e negócio.</li>
+            </ul>
+            <div class="exp-kpis">
+              <div class="kpi"><span class="kpi-val">30%+</span><span class="kpi-lbl">Do new MRR via parcerias</span></div>
+              <div class="kpi"><span class="kpi-val">4</span><span class="kpi-lbl">Squads integrados</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">Ago 2023 — Ago 2024</span>
+          <span class="acc-company">Up Car Assistência <span class="acc-type">· Logística e Serviços</span></span>
+          <span class="acc-role">Gerente de Projetos</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">PDCA</span><span class="ptag">KPIs</span><span class="ptag">Governança</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li>Liderou o planejamento e execução end-to-end do lançamento de nova unidade logística, desde a definição de escopo e roadmap até a operacionalização. A iniciativa gerou crescimento de 31% na receita da unidade e viabilizou a entrada de grandes contas corporativas.</li>
+              <li>Conduziu projeto de revisão operacional que resultou em redução de 22% nos custos de manutenção e 18% no consumo de combustível, com gestão de fornecedores, renegociação contratual e monitoramento de KPIs.</li>
+              <li>Estruturou modelo de governança de projetos com aplicação de PDCA, diagnóstico de riscos e acompanhamento de indicadores de performance, promovendo melhoria contínua e previsibilidade de entregas.</li>
+              <li>Gerenciou stakeholders e fornecedores estratégicos, assegurando alinhamento entre escopo, cronograma e metas corporativas ao longo do ciclo de vida dos projetos.</li>
+            </ul>
+            <div class="exp-kpis">
+              <div class="kpi"><span class="kpi-val">+31%</span><span class="kpi-lbl">Crescimento de receita</span></div>
+              <div class="kpi"><span class="kpi-val">-22%</span><span class="kpi-lbl">Custos de manutenção</span></div>
+              <div class="kpi"><span class="kpi-val">-18%</span><span class="kpi-lbl">Consumo de combustível</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">Jan 2008 — Ago 2023</span>
+          <span class="acc-company">Entretenimento, Varejo e Serviços <span class="acc-type">· Operações em Escala</span></span>
+          <span class="acc-role">Liderança em Operações de Escala</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">Rollout</span><span class="ptag">Power BI</span><span class="ptag">Varejo</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li><strong>Rollout Nacional de Processos:</strong> Referência regional no projeto de implantação e padronização de processos operacionais em rede de mais de 60 unidades distribuídas nacionalmente. Gerenciou equipe direta de 20 pessoas e coordenou alinhamento com mais de 60 gestores de unidade.</li>
+              <li><strong>Implantação de BI em 115 Unidades:</strong> Definição de requisitos, critérios de aceite e validação de QA no rollout de Power BI em rede nacional de mais de 115 unidades. O projeto consolidou dados operacionais em toda a rede, reduzindo 8 sistemas para uma única plataforma integrada.</li>
+              <li>Trajetória de alta performance: crescimento de faturamento de 50% para 105% de atingimento em rede nacional, com reconhecimento consecutivo como melhor desempenho frente a mais de 110 unidades.</li>
+            </ul>
+            <div class="exp-kpis">
+              <div class="kpi"><span class="kpi-val">115+</span><span class="kpi-lbl">Unidades no BI rollout</span></div>
+              <div class="kpi"><span class="kpi-val">60+</span><span class="kpi-lbl">Unidades no rollout</span></div>
+              <div class="kpi"><span class="kpi-val">105%</span><span class="kpi-lbl">Atingimento de meta</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJETOS -->
+<section id="projetos" class="bg-alt">
+  <div class="s-label">Projetos e Impacto</div>
+  <h2 class="s-heading fade-up">Cases que<br><strong>definem padrão</strong></h2>
+  <div class="acc-list" id="proj-acc">
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">01 · Case de Destaque</span>
+          <span class="acc-company">Mukutu <span class="acc-type">· Em curso</span></span>
+          <span class="acc-role">Engenharia de Requisitos do Zero</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">Requisitos</span><span class="ptag">QA</span><span class="ptag">Governança</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Estruturou e mantém o processo completo de engenharia de requisitos da Mukutu, função que não existia na empresa. Do levantamento funcional e não funcional à elaboração de histórias de usuário com critérios de aceite integrados ao QA. Hoje é o padrão metodológico da agência para todos os portes e metodologias.</p>
+          <div class="proj-stats-acc">
+            <div class="pstat"><span class="pstat-lbl">Função existia antes?</span><span class="pstat-val">Não</span></div>
+            <div class="pstat"><span class="pstat-lbl">Projetos cobertos</span><span class="pstat-val">9 ativos</span></div>
+            <div class="pstat"><span class="pstat-lbl">Metodologias</span><span class="pstat-val">Ágil · Waterfall · Híbrido</span></div>
+            <div class="pstat"><span class="pstat-lbl">Integração QA</span><span class="pstat-val">100%</span></div>
+            <div class="pstat"><span class="pstat-lbl">Aprovação de release</span><span class="pstat-val">Centralizada na GP</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">02 · Rollout Nacional</span>
+          <span class="acc-company">Entretenimento e Varejo</span>
+          <span class="acc-role">Padronização em 60+ Unidades</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">Rollout</span><span class="ptag">Escala Nacional</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Referência regional na implantação e padronização de processos operacionais em rede distribuída. Gestão de equipe de 20 pessoas e coordenação com 60+ gestores, garantindo aderência ao escopo em escala nacional nos setores de entretenimento e varejo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">03 · Business Intelligence</span>
+          <span class="acc-company">Varejo Nacional</span>
+          <span class="acc-role">Power BI em 115 Unidades</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">Power BI</span><span class="ptag">Data-Driven</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Definição de requisitos, critérios de aceite e validação de QA no rollout de Power BI em rede nacional. Consolidação de dados operacionais em toda a rede, reduzindo 8 sistemas para uma plataforma integrada e suportando decisões por indicadores.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">04 · IA Aplicada</span>
+          <span class="acc-company">Mukutu</span>
+          <span class="acc-role">Automação com IA em Gestão de Projetos</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">IA</span><span class="ptag">Automação</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Integrou ferramentas de IA ao fluxo de gestão para geração de QA, histórias de usuário, documentação técnica e comunicação com stakeholders. Economia superior a 100 horas mensais sem perda de rastreabilidade ou qualidade.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">05 · Canal de Parcerias</span>
+          <span class="acc-company">Letalk · SaaS B2B</span>
+          <span class="acc-role">30%+ do New MRR Estruturado do Zero</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">SaaS</span><span class="ptag">Parcerias</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Implantação do Programa de Parcerias end-to-end na Letalk, integrando Produto, Vendas, Marketing e Tecnologia com governança ágil. O canal estruturado passou a representar mais de 30% do new MRR mensal da empresa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">06 · Governança Operacional</span>
+          <span class="acc-company">Up Car Assistência</span>
+          <span class="acc-role">+31% de Receita via Modelo Estruturado</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-tags-inline">
+            <span class="ptag">PDCA</span><span class="ptag">KPIs</span>
+          </span>
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Lançamento de unidade logística com crescimento de 31% na receita, redução de 22% em custos de manutenção e 18% em combustível. Governança via PDCA, KPIs e renegociação contratual estratégica com fornecedores.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="s-label">Stack e Metodologias</div>
+  <h2 class="s-heading fade-up">Ferramentas de<br><strong>alto desempenho</strong></h2>
+  <div class="stack-grid">
+
+    <div class="fade-up">
+      <div class="scat-label">Gestão e Acompanhamento</div>
+      <div class="scat-items">
+        <div class="sitem"><span class="sitem-name">Jira</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Azure DevOps</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Notion</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Trello / Asana</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Confluence</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Miro</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Slack</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <div class="scat-label">Metodologias</div>
+      <div class="scat-items">
+        <div class="sitem"><span class="sitem-name">Scrum (PSM I)</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Kanban</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
+        <div class="sitem"><span class="sitem-name">OKR</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Lean Six Sigma</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">PDCA</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">EAP / RACI / SWOT</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <div class="scat-label">CRM, Analytics e Sistemas</div>
+      <div class="scat-items">
+        <div class="sitem"><span class="sitem-name">Power BI</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">HubSpot</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Salesforce</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Zendesk</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Google Workspace</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
+        <div class="sitem"><span class="sitem-name">MS Office / Excel</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Protheus</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Sascar</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais" class="bg-alt">
+  <div class="s-label">Diferenciais</div>
+  <h2 class="s-heading fade-up">O que me<br><strong>torna diferente</strong></h2>
+  <div class="acc-list" id="diff-acc">
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">01</span>
+          <span class="acc-role">Visão de Negócio Real</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Não executa tarefas isoladas. Entende o impacto de cada entrega no resultado da empresa e faz a ponte entre o backlog técnico e os objetivos estratégicos com precisão.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">02</span>
+          <span class="acc-role">Liderança Cross-funcional</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Conduz times multidisciplinares sem autoridade hierárquica. Produto, tecnologia, vendas e marketing alinhados em torno do mesmo objetivo de entrega e resultado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">03</span>
+          <span class="acc-role">Estruturação de Processos</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Entra em ambientes sem metodologia e sai deixando uma estrutura que funciona de forma autônoma. Cria playbooks, templates e fluxos que escalam além do projeto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">04</span>
+          <span class="acc-role">Governança Sem Burocracia</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Implementa controles de escopo, cronograma e risco que protegem o projeto sem travar o time. Governança que habilita velocidade, não que a impede.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">05</span>
+          <span class="acc-role">Comunicação Executiva</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">Fala a língua do C-level e do time técnico. Transforma complexidade em narrativa de negócio e mantém stakeholders informados, alinhados e confiantes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item fade-up">
+      <button type="button" class="acc-trigger" aria-expanded="false">
+        <div class="acc-trigger-left">
+          <span class="acc-period">06</span>
+          <span class="acc-role">Entrega sob Alta Pressão</span>
+        </div>
+        <div class="acc-trigger-right">
+          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-desc">12+ anos em ambientes de alta complexidade. Redes nacionais, múltiplos stakeholders, prazos reais, expectativas altas. Entregar sob pressão é rotina, não exceção.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMAÇÃO -->
+<section id="formacao">
+  <div class="s-label">Formação e Certificações</div>
+  <h2 class="s-heading fade-up">Base acadêmica <em>sólida</em></h2>
+  <div class="edu-grid">
+    <div class="fade-up">
+      <div class="edu-col-label">Formação Acadêmica</div>
+      <div class="edu-list">
+        <div class="edu-row">
+          <div class="edu-degree">Pós-graduação em Gerenciamento de Projetos e Metodologias Ágeis</div>
+          <div class="edu-school">PUCRS</div>
+          <span class="edu-year">Em andamento · conclusão prevista Ago/2026</span>
+        </div>
+        <div class="edu-row">
+          <div class="edu-degree">Pós-graduação em Gestão de Projetos</div>
+          <div class="edu-school">UNIALPHAVILLE</div>
+          <span class="edu-year">2023</span>
+        </div>
+        <div class="edu-row">
+          <div class="edu-degree">MBA em Gestão Empresarial com Ênfase em Controladoria e Finanças</div>
+          <div class="edu-school">FBMG</div>
+          <span class="edu-year">2020</span>
+        </div>
+        <div class="edu-row">
+          <div class="edu-degree">Bacharelado em Administração de Empresas</div>
+          <div class="edu-school">FAFICA</div>
+          <span class="edu-year">2013</span>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up">
+      <div class="edu-col-label">Certificações e Formações Complementares</div>
+      <div class="cert-list">
+        <div class="cert">PSM I · Scrum.org (2023)</div>
+        <div class="cert">Yellow Belt Lean Six Sigma</div>
+        <div class="cert">Gerenciamento de Projetos · Voitto</div>
+        <div class="cert">Liderança de Produtos Digitais · Canal Valor</div>
+        <div class="cert">Fundamentos Kanban · Canal Valor</div>
+        <div class="cert">Jira e Confluence · Canal Valor</div>
+        <div class="cert">Azure DevOps Boards · Canal Valor</div>
+        <div class="cert">Formação Gerente Ágil · Alura</div>
+        <div class="cert">Digital e Agile Thinking · Alura</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTATO -->
+<section id="contato" class="bg-alt">
+  <div class="contact-inner">
+    <div class="contact-label fade-up">Contato</div>
+    <h2 class="contact-heading fade-up">Vamos <strong>conversar</strong></h2>
+    <p class="contact-sub fade-up">Quer trocar uma ideia, falar sobre projetos ou simplesmente se conectar? Escolha o canal de sua preferência.</p>
+    <div class="contact-actions fade-up">
+      <a href="https://wa.me/5581996404335" target="_blank" rel="noopener noreferrer" class="c-link">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://www.linkedin.com/in/jessicamarianos" target="_blank" rel="noopener noreferrer" class="c-link">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:jessical.mariano@icloud.com" class="c-link">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        E-mail
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Jéssica Mariano · Todos os direitos reservados</p>
+  <p>Gerente de Projetos · Caruaru, PE · Brasil</p>
+</footer>
+
+<script>
+/* CURSOR */
+const dot = document.getElementById('dot');
+const dotRing = document.getElementById('dot-ring');
+const dotLabel = document.getElementById('dot-label');
+let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.opacity = '0.9'; });
+document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; dotRing.style.opacity = '0'; });
+document.addEventListener('mouseenter', () => { dotRing.style.opacity = '1'; });
+
+let rafId = null;
+function loop() {
+  dx += (mx - dx) * 0.18;
+  dy += (my - dy) * 0.18;
+  dot.style.left = dx + 'px';
+  dot.style.top  = dy + 'px';
+  rx += (mx - rx) * 0.08;
+  ry += (my - ry) * 0.08;
+  dotRing.style.left = rx + 'px';
+  dotRing.style.top  = ry + 'px';
+  dotLabel.style.left = (rx + 18) + 'px';
+  dotLabel.style.top  = (ry - 6) + 'px';
+  rafId = requestAnimationFrame(loop);
+}
+loop();
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  } else {
+    if (!rafId) loop();
+  }
+});
+
+document.querySelectorAll('a, button').forEach(el => {
+  const isBtn = el.classList.contains('acc-trigger');
+  const label = isBtn ? 'abrir' : 'acessar';
+  el.addEventListener('mouseenter', () => {
+    dot.style.width = '4px';
+    dot.style.height = '4px';
+    dot.style.opacity = '0.4';
+    dotRing.style.width = '42px';
+    dotRing.style.height = '42px';
+    dotRing.style.borderColor = 'rgba(0,152,184,0.55)';
+    dotLabel.textContent = label;
+    dotLabel.style.opacity = '1';
+  });
+  el.addEventListener('mouseleave', () => {
+    dot.style.width = '7px';
+    dot.style.height = '7px';
+    dot.style.opacity = '0.9';
+    dotRing.style.width = '32px';
+    dotRing.style.height = '32px';
+    dotRing.style.borderColor = 'rgba(0,152,184,0.3)';
+    dotLabel.style.opacity = '0';
+  });
+});
+
+/* MOBILE MENU */
+const toggle = document.getElementById('nav-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+function openMenu() {
+  mobileMenu.style.display = 'flex';
+  /* força reflow para a transição de opacity funcionar */
+  mobileMenu.offsetHeight;
+  mobileMenu.classList.add('open');
+  toggle.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  mobileMenu.classList.remove('open');
+  toggle.classList.remove('open');
+  document.body.style.overflow = '';
+  /* volta para display:none após a transição de opacity terminar */
+  setTimeout(() => {
+    if (!mobileMenu.classList.contains('open')) {
+      mobileMenu.style.display = 'none';
+    }
+  }, 260);
+}
+
+if (toggle && mobileMenu) {
+  toggle.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+}
+
+/* NAV */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* SMOOTH SCROLL */
+function scrollToSection(id) {
+  const target = document.querySelector(id);
+  if (!target) return;
+  const navOffset = window.innerWidth <= 768 ? 58 : 64;
+  const top = target.getBoundingClientRect().top + window.scrollY - navOffset;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+/* HANDLER ÚNICO — âncoras internas */
+document.addEventListener('click', function(e) {
+  const a = e.target.closest('a');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || !href.startsWith('#') || href === '#') return;
+  const target = document.querySelector(href);
+  if (!target) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  /* Fecha menu mobile e navega */
+  if (mobileMenu && mobileMenu.classList.contains('open')) {
+    closeMenu();
+  }
+  scrollToSection(href);
+
+}, true);
+
+/* ACCORDION */
+document.querySelectorAll('.acc-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const item = trigger.closest('.acc-item');
+    const body = item.querySelector('.acc-body');
+    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+    /* Fecha todos os outros do mesmo grupo */
+    const list = item.closest('.acc-list');
+    list.querySelectorAll('.acc-trigger').forEach(t => {
+      if (t !== trigger) {
+        t.setAttribute('aria-expanded', 'false');
+        t.closest('.acc-item').querySelector('.acc-body').classList.remove('open');
+      }
+    });
+
+    /* Abre ou fecha o clicado */
+    trigger.setAttribute('aria-expanded', String(!isOpen));
+    body.classList.toggle('open', !isOpen);
+  });
+});
+
+/* ─── PROTEÇÃO DE AUTORIA ─── */
+(function () {
+  const pill = document.getElementById('copyright-pill');
+  let pillTimer = null;
+
+  function showPill() {
+    clearTimeout(pillTimer);
+    pill.classList.add('show');
+    pillTimer = setTimeout(() => pill.classList.remove('show'), 2200);
+  }
+
+  /* Bloqueio de clique direito — exceto em inputs e campos editáveis */
+  document.addEventListener('contextmenu', function (e) {
+    const tag = e.target.tagName.toLowerCase();
+    const editable = e.target.isContentEditable;
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || editable) return;
+    e.preventDefault();
+    showPill();
+  });
+
+  /* Interceptação de cópia — substitui texto copiado */
+  document.addEventListener('copy', function (e) {
+    const tag = document.activeElement.tagName.toLowerCase();
+    const editable = document.activeElement.isContentEditable;
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || editable) return;
+    const notice = '© Jéssica Mariano · CC BY-NC-SA 4.0\n\nConteúdo protegido. Reprodução não autorizada é vedada.';
+    e.clipboardData.setData('text/plain', notice);
+    e.preventDefault();
+  });
+
+  /* Aviso desktop — persistente, fecha manualmente, persiste entre visitas */
+  const notice = document.getElementById('mobile-notice');
+  const closeBtn = document.getElementById('mobile-notice-close');
+
+  if (notice && closeBtn) {
+    if (localStorage.getItem('notice-dismissed')) {
+      /* Já foi fechado em visita anterior — não exibe */
+      notice.style.display = 'none';
+    } else {
+      /* Exibe com entrada suave após 800ms */
+      setTimeout(() => notice.classList.add('visible'), 800);
+    }
+    closeBtn.addEventListener('click', () => {
+      notice.classList.remove('visible');
+      setTimeout(() => { notice.style.display = 'none'; }, 360);
+      localStorage.setItem('notice-dismissed', '1');
+    });
+  }
+})();
+
+
+(function () {
+  function easeOutQuart(t) {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function animateCount(el, target, suffix, duration) {
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = Math.round(easeOutQuart(progress) * target);
+      el.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function runSequence() {
+    const metricsBlock = document.querySelector('.hero-metrics');
+    if (!metricsBlock) return;
+    const items = Array.from(metricsBlock.querySelectorAll('.hm-item'));
+    const ITEM_DELAY  = 220;
+    const ENTER_DUR   = 700;
+    const COUNT_DUR   = 900;
+    const LABEL_DELAY = 200;
+
+    items.forEach((item, i) => {
+      const valEl   = item.querySelector('.hm-value');
+      const labelEl = item.querySelector('.hm-label');
+      const target  = parseInt(valEl.dataset.target);
+      const suffix  = valEl.dataset.suffix || '';
+      const entryAt = i * ITEM_DELAY;
+
+      setTimeout(() => {
+        valEl.classList.add('visible');
+        animateCount(valEl, target, suffix, COUNT_DUR);
+      }, entryAt);
+
+      setTimeout(() => {
+        labelEl.classList.add('visible');
+      }, entryAt + ENTER_DUR - 100 + LABEL_DELAY);
+    });
+  }
+
+  /* Dispara após o hero terminar de entrar (1300ms da animação CSS + buffer) */
+  window.addEventListener('load', () => setTimeout(runSequence, 1700));
+})();
+
+/* FADE-UP AO SCROLL */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const d = parseInt(e.target.dataset.delay || 0);
+    setTimeout(() => e.target.classList.add('visible'), d);
+    io.unobserve(e.target);
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.dataset.delay = (i % 4) * 55;
+  io.observe(el);
+});
+</script>
+
+</body>
+</html>
