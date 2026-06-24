@@ -17,17 +17,16 @@
 <meta property="og:title" content="Jéssica Mariano · Gerente de Projetos">
 <meta property="og:description" content="Transformando operações complexas em entregas escaláveis.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://jessicamariano.com.br">
-<meta property="og:image" content="https://jessicamariano.com.br/og-image.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://jessicamariano.github.io/portfolio/">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jéssica Mariano · Gerente de Projetos">
 <meta name="twitter:description" content="Transformando operações complexas em entregas escaláveis.">
 <title>Jéssica Mariano · Gerente de Projetos</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a0a0f'/><text y='21' x='9' font-size='14' fill='%23e8e8f0' font-family='sans-serif' font-weight='600'>JM</text></svg>">
-<link rel="canonical" href="https://jessicamariano.com.br">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230b0f14'/><text y='21' x='9' font-size='14' fill='%23ffffff' font-family='sans-serif' font-weight='600'>JM</text></svg>">
+<link rel="canonical" href="https://jessicamariano.github.io/portfolio/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
 /* ─────────────────────────────────────────
@@ -36,27 +35,40 @@
    Tipografia: Plus Jakarta Sans + Inter + IBM Plex Mono
 ───────────────────────────────────────── */
 :root {
-  /* Backgrounds — branco quente, não frio */
-  --bg-0: #f5f4f0;
-  --bg-1: #efede8;
-  --bg-2: #e8e6e0;
-  --bg-3: #e0ded8;
+  /* Backgrounds — Neutra fria clara */
+  --bg-0: #ffffff;   /* neutro-100 */
+  --bg-1: #e7eaed;   /* neutro-90 */
+  --bg-2: #e2eaf1;   /* secundária-90 */
+  --bg-3: #cbd0d5;   /* neutro-80 */
 
-  /* Bordas — sutis sobre fundo claro */
-  --line-0: rgba(0,0,0,0.06);
-  --line-1: rgba(0,0,0,0.09);
-  --line-2: rgba(0,0,0,0.14);
+  /* Bordas — neutro frio sutil */
+  --line-0: rgba(35,40,45,0.08);
+  --line-1: rgba(35,40,45,0.13);
+  --line-2: rgba(35,40,45,0.20);
 
-  /* Texto — hierarquia clara */
-  --t-0: #111118;   /* headings — quase preto */
-  --t-1: #2a2a35;   /* body */
-  --t-2: #5a5a6e;   /* secondary */
-  --t-3: #8e8ea0;   /* muted / labels */
+  /* Preto de marca — substituto do preto puro (ponto-0 das escalas) */
+  --color-primary-0: #0b0f14;
+  --color-neutral-0: #0b0f14;
 
-  /* Acento ciano — mais escuro para funcionar no claro */
-  --cyan: #0098b8;
-  --cyan-dim: rgba(0,152,184,0.08);
-  --cyan-line: rgba(0,152,184,0.2);
+  /* Texto — Preto de marca → Neutra fria */
+  --t-0: #0b0f14;   /* headings — preto de marca */
+  --t-1: #23282d;   /* body — neutro-20 */
+  --t-2: #4f565e;   /* secondary — neutro-40 */
+  --t-3: #6b727a;   /* muted / labels — neutro-50 */
+
+  /* Acento de marca — Primária azul */
+  --cyan: #2666a6;            /* primária-40, contraste AA em fundo claro */
+  --cyan-dim: rgba(47,128,208,0.10);
+  --cyan-line: rgba(47,128,208,0.28);
+
+  /* Azul vivo — gráficos / destaque */
+  --green: #2f80d0;           /* primária-50 */
+
+  /* CTA — azul de marca, tinta clara */
+  --amber: #2f80d0;           /* primária-50 */
+  --amber-deep: #1c4d7d;      /* primária-30 (hover) */
+  --amber-ink: #ffffff;       /* texto sobre o azul */
+  --amber-dim: rgba(47,128,208,0.12);
 
   /* Fontes */
   --f-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -106,25 +118,62 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
+  background: #0b0f14;
   border-bottom: 1px solid transparent;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s var(--ease);
+  will-change: transform;
 }
+/* Auto-hide: esconde ao rolar para baixo, reaparece ao rolar para cima */
+nav.nav-hidden { transform: translateY(-100%); }
+/* Leve elevação após sair do topo */
 nav.scrolled {
-  background: rgba(245, 244, 240, 0.92);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom-color: var(--line-0);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 30px rgba(0,0,0,0.35);
+}
+
+/* ── Filete inferior: base sutil + raio animado percorrendo a linha ── */
+nav::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 32%;
+  height: 1.5px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(47,128,208,0.35) 25%,
+    #5999d9 50%,
+    rgba(47,128,208,0.35) 75%,
+    transparent 100%);
+  box-shadow: 0 0 10px rgba(47,128,208,0.7), 0 0 4px rgba(89,153,217,0.9);
+  pointer-events: none;
+  will-change: transform;
+  animation: nav-beam 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes nav-beam {
+  0%   { transform: translateX(-130%); }
+  100% { transform: translateX(430%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  nav { transition: none; }
+  nav::after { animation: none; transform: translateX(210%); opacity: 0.6; }
 }
 .nav-logo {
   font-family: var(--f-heading);
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--cyan);
+  color: #ffffff;
 }
 .nav-logo em {
   font-style: normal;
-  color: var(--cyan);
+  color: #5999d9;
   font-weight: 400;
 }
 .nav-links {
@@ -138,26 +187,27 @@ nav.scrolled {
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--t-3);
+  color: #8a929b;
   transition: color 0.2s var(--ease);
 }
-.nav-links a:hover { color: var(--t-0); }
+.nav-links a:hover { color: #ffffff; }
 .nav-contact {
   font-family: var(--f-mono);
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--t-2);
-  border: 1px solid var(--line-2);
+  color: #ffffff;
+  background: var(--cyan);
+  border: 1px solid var(--cyan);
   padding: 0.45rem 1rem;
   border-radius: var(--r-sm);
   transition: all 0.2s var(--ease);
 }
 .nav-contact:hover {
-  color: var(--t-0);
-  border-color: var(--line-2);
-  background: var(--bg-2);
+  background: #2f80d0;
+  border-color: #2f80d0;
+  color: #ffffff;
 }
 
 /* ─── HERO ─── */
@@ -169,6 +219,12 @@ nav.scrolled {
   padding: 0 4rem;
   padding-top: 64px;
   position: relative;
+  /* Profundidade discreta: centro → direita, neutro-80 em opacidade mínima.
+     Sem spotlight/vinheta; transição quase imperceptível (3 paradas). */
+  background: linear-gradient(to right,
+    rgba(203,208,213,0) 44%,
+    rgba(203,208,213,0.14) 74%,
+    rgba(203,208,213,0.34) 100%);
 }
 
 /* Noise texture sutil — premium, não decorativo */
@@ -181,6 +237,14 @@ nav.scrolled {
   pointer-events: none;
 }
 
+/* Campo Inteligente — rede reativa confinada à direita (nunca sobre o texto) */
+#hero-net {
+  position: absolute;
+  inset: 0;
+  z-index: 0;            /* atrás do conteúdo (.hero-inner é z-index 1) */
+  pointer-events: none;  /* não bloqueia seleção/links */
+}
+
 .hero-inner {
   position: relative;
   z-index: 1;
@@ -191,9 +255,9 @@ nav.scrolled {
 .hero-name {
   font-family: var(--f-heading);
   font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 300;
-  letter-spacing: -0.035em;
-  line-height: 1.0;
+  font-weight: 200;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
   color: var(--t-0);
   margin-bottom: 0.15em;
   opacity: 0;
@@ -207,9 +271,9 @@ nav.scrolled {
 
 .hero-position {
   font-family: var(--f-mono);
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.13em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--t-3);
   margin-bottom: 2.5rem;
@@ -232,10 +296,11 @@ nav.scrolled {
 
 .hero-statement {
   font-size: clamp(0.92rem, 1.4vw, 1rem);
-  font-weight: 400;
-  line-height: 1.82;
+  font-weight: 300;
+  line-height: 1.85;
+  letter-spacing: 0.002em;
   color: var(--t-2);
-  max-width: 520px;
+  max-width: none;   /* alinha o fim do texto ao limite do bloco de métricas (quadrante "9 projetos") */
   margin-bottom: 3rem;
   opacity: 0;
   transform: translateY(8px);
@@ -262,15 +327,15 @@ nav.scrolled {
   align-items: center;
   gap: 0.5rem;
   padding: 0.7rem 1.5rem;
-  background: var(--t-0);
-  color: var(--bg-0);
+  background: var(--amber);
+  color: var(--amber-ink);
   font-family: var(--f-body);
   font-size: 0.82rem;
   font-weight: 600;
   border-radius: var(--r-sm);
-  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
 }
-.btn-fill:hover { opacity: 0.82; transform: translateY(-1px); }
+.btn-fill:hover { background: var(--amber-deep); color: #ffffff; transform: translateY(-1px); }
 .btn-fill:active { transform: scale(0.98); }
 
 .btn-outline {
@@ -303,6 +368,7 @@ nav.scrolled {
   border-top: 1px solid var(--line-0);
   opacity: 0;
   animation: appear 0.4s var(--ease-out) 1.3s forwards;
+  position: relative;
 }
 .hm-item {
   flex: 1;
@@ -318,20 +384,93 @@ nav.scrolled {
 .hm-value {
   font-family: var(--f-heading);
   font-size: clamp(2.8rem, 5vw, 4.2rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: var(--t-0);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  color: #9fb3c8;            /* cor "fria" de calibragem (antes de travar) */
   line-height: 1;
   display: block;
+  white-space: nowrap;       /* mantém número + sufixo na mesma linha */
   opacity: 0;
   transform: translateY(10px);
   /* transição controlada pelo JS */
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.45s var(--ease);
 }
 .hm-value.visible {
   opacity: 1;
   transform: none;
+}
+/* travou no valor final → cor de marca + micro-pop */
+.hm-value.locked { color: var(--t-0); }
+.hm-num { font-variant-numeric: tabular-nums; display: inline-block; }
+.hm-num.pop { animation: hm-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes hm-pop { 0% { transform: scale(1.07); } 100% { transform: scale(1); } }
+/* sufixo refinado: menor, elevado, em ciano */
+.hm-suf {
+  font-size: 0.5em;
+  vertical-align: super;
+  color: var(--cyan);
+  letter-spacing: 0;
+  margin-left: 0.03em;
+}
+/* métrica-herói: rampa azul líquida em movimento ao travar */
+.hm-value.hm-hero.locked,
+.hm-value.hm-hero.locked .hm-num,
+.hm-value.hm-hero.locked .hm-suf {
+  background: linear-gradient(90deg, #1c4d7d, #2666a6, #2f80d0, #5999d9, #2666a6);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: hm-liquid 4.5s linear infinite;
+}
+@keyframes hm-liquid { to { background-position: -200% 0; } }
+/* ponto pulsante no rótulo da métrica-herói */
+.hm-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  margin-left: 7px;
+  vertical-align: middle;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.hm-label.visible .hm-dot { opacity: 1; animation: hm-pulse 1.8s ease-in-out infinite; }
+@keyframes hm-pulse { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1); } }
+/* base + scan beam (mesmo motivo do header) */
+.hm-base {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--line-0);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+.hm-base.show { opacity: 1; }
+.hm-scan {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 28%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(38,102,166,0.4), #5999d9, rgba(38,102,166,0.4), transparent);
+  box-shadow: 0 0 12px rgba(47,128,208,0.8);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.hm-scan.go { animation: hm-sweep 1.7s cubic-bezier(0.45, 0, 0.55, 1) forwards; }
+@keyframes hm-sweep {
+  0%   { transform: translateX(-120%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(385%); opacity: 0; }
+}
+.hm-item { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+@media (hover: hover) and (pointer: fine) {
+  .hm-item:hover { transform: translateY(-3px); }
 }
 .hm-label {
   font-family: var(--f-mono);
@@ -397,19 +536,19 @@ section {
 .s-heading {
   font-family: var(--f-heading);
   font-size: clamp(1.75rem, 3.2vw, 2.6rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
   color: var(--t-0);
   margin-bottom: 1rem;
 }
 .s-heading strong {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--t-0);
 }
 .s-heading em {
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--t-0);
 }
 
@@ -424,9 +563,9 @@ section {
 /* ─── SOBRE ─── */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: start;
+  grid-template-columns: 1.4fr 1fr;  /* prosa mais larga → menos linhas → menor altura */
+  gap: 4.5rem;
+  align-items: start;   /* colunas alinhadas pelo topo (alinhamento vertical) */
   margin-top: 3.5rem;
 }
 .about-body p {
@@ -435,21 +574,54 @@ section {
   color: var(--t-2);
   margin-bottom: 1.25rem;
 }
+.about-body p:last-child { margin-bottom: 0; }   /* base alinha com a coluna direita */
 .about-body p strong { color: var(--t-1); font-weight: 500; }
 .about-body p em { font-style: normal; color: var(--t-1); }
 
+/* Sistema Conectado: 3 pilares como nós numerados numa espinha viva */
 .about-cards {
   display: flex;
   flex-direction: column;
-  gap: 1px; /* cards separados por linha fina */
+  justify-content: flex-start;   /* agrupa os pilares no topo, sem gaps gigantes */
+  gap: 2.25rem;                  /* espaçamento consistente entre os 3 pilares */
+  position: relative;
+  padding-left: 30px;
+  counter-reset: acard;
+}
+/* espinha do sistema */
+.about-cards::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: var(--spine-top, 0px);
+  height: var(--spine-h, 100%);
+  width: 2px;
+  background: rgba(38,102,166,0.18);
 }
 .acard {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--line-0);
-  transition: padding-left 0.2s var(--ease);
+  position: relative;
+  padding: 0;
+  counter-increment: acard;
+  transition: transform 0.25s var(--ease);
 }
-.acard:first-child { border-top: 1px solid var(--line-0); }
-.acard:hover { padding-left: 0.5rem; }
+/* nó na espinha — alinhado à linha do label */
+.acard::before {
+  content: '';
+  position: absolute;
+  left: -28.5px;
+  top: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg-1);
+  border: 2px solid var(--cyan);
+  transition: background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.acard:hover::before {
+  background: var(--cyan);
+  box-shadow: 0 0 0 5px rgba(38,102,166,0.14);
+}
+.acard:hover { transform: translateX(2px); }
 .acard-label {
   font-family: var(--f-mono);
   font-size: 0.58rem;
@@ -457,6 +629,11 @@ section {
   text-transform: uppercase;
   color: var(--t-3);
   margin-bottom: 0.5rem;
+}
+/* numeração 01 · 02 · 03 (gerada, não altera o conteúdo) */
+.acard-label::before {
+  content: counter(acard, decimal-leading-zero) " · ";
+  color: var(--cyan);
 }
 .acard-title {
   font-family: var(--f-heading);
@@ -554,11 +731,34 @@ section {
 }
 
 /* ─── STACK ─── */
+/* CENTRO DE OPERAÇÕES — textura estática, sem ruído de movimento */
+#stack {
+  background-image: radial-gradient(rgba(35,40,45,0.035) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
 .stack-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
+  gap: 1.25rem;
   margin-top: 3.5rem;
+}
+.co-mod {
+  background: rgba(255,255,255,0.94);
+  border: 0.5px solid var(--line-1);
+  border-radius: var(--r-md);
+  padding: 1.1rem 1.2rem;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease), background 0.25s var(--ease);
+}
+.co-mod:hover {
+  border-color: var(--cyan-line);
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(38,102,166,0.06), 0 12px 32px rgba(38,102,166,0.10);
+  transform: translateY(-3px);
+}
+.co-mod.core {
+  background: #ffffff;
+  border-color: rgba(38,102,166,0.4);
+  box-shadow: 0 0 0 1px rgba(38,102,166,0.08), 0 8px 24px rgba(38,102,166,0.06);
 }
 .scat-label {
   font-family: var(--f-mono);
@@ -567,41 +767,41 @@ section {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cyan);
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.7rem;
   border-bottom: 1px solid var(--line-0);
-}
-.scat-items {
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  align-items: center;
+  gap: 0.5rem;
 }
+.scat-label::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 1.5px solid var(--cyan);
+  flex-shrink: 0;
+}
+.scat-items { display: flex; flex-direction: column; gap: 0; }
 .sitem {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.7rem 0;
-  border-bottom: 1px solid var(--line-0);
-  transition: opacity 0.15s;
+  gap: 0.6rem;
+  padding: 0.42rem 0;
 }
-.sitem:last-child { border-bottom: none; }
-.sitem:hover { opacity: 0.75; }
-.sitem-name {
-  font-family: var(--f-body);
-  font-size: 0.85rem;
-  color: var(--t-1);
-}
-.sdots {
-  display: flex;
-  gap: 3px;
-}
-.sd {
-  width: 4px;
-  height: 4px;
+.sitem::before {
+  content: '';
+  width: 5px; height: 5px;
   border-radius: 50%;
-  background: var(--line-1);
+  background: var(--t-3);
+  flex-shrink: 0;
+  transition: background 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
-.sd.on { background: var(--t-3); }
+.sitem-name { font-family: var(--f-body); font-size: 0.85rem; color: var(--t-1); }
+.co-mod:hover .sitem::before {
+  background: var(--cyan);
+  box-shadow: 0 0 0 3px var(--cyan-dim);
+}
 
 
 /* ─── FORMAÇÃO ─── */
@@ -620,18 +820,52 @@ section {
   color: var(--cyan);
   margin-bottom: 1.25rem;
 }
+/* STRATA — camadas de domínio (base sólida → em andamento no topo) */
 .edu-list {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 9px;
 }
 .edu-row {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--line-0);
-  transition: padding-left 0.2s var(--ease);
+  position: relative;
+  padding: 0.9rem 1.1rem;
+  background: #ffffff;
+  border: 0.5px solid var(--line-1);
+  border-radius: var(--r-md);
+  box-shadow: 0 4px 14px rgba(35,40,45,0.05);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
 }
-.edu-row:first-child { border-top: 1px solid var(--line-0); }
-.edu-row:hover { padding-left: 0.5rem; }
+/* escalonamento: camadas mais antigas recuam (profundidade/empilhamento) */
+.edu-row:nth-child(2) { margin-left: 22px; }
+.edu-row:nth-child(3) { margin-left: 44px; }
+.edu-row:nth-child(4) { margin-left: 66px; background: #f3f5f7; }
+/* topo = "em andamento": camada viva */
+.edu-row:first-child {
+  border-color: rgba(38,102,166,0.4);
+  box-shadow: 0 10px 24px rgba(38,102,166,0.10);
+}
+.edu-row:first-child .edu-year { color: var(--cyan); }
+.edu-row:first-child::before {
+  content: '';
+  position: absolute;
+  left: -5px; top: 50%;
+  transform: translateY(-50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(38,102,166,0.14);
+  animation: eduPulse 2.1s ease-in-out infinite;
+}
+@keyframes eduPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(38,102,166,0.10); }
+  50%      { box-shadow: 0 0 0 7px rgba(38,102,166,0.18); }
+}
+.edu-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(35,40,45,0.10);
+  border-color: var(--cyan-line);
+}
+@media (prefers-reduced-motion: reduce) { .edu-row:first-child::before { animation: none; } }
 .edu-degree {
   font-family: var(--f-body);
   font-size: 0.88rem;
@@ -654,27 +888,39 @@ section {
   margin-top: 0.4rem;
   display: block;
 }
+/* Certificações harmonizadas: chips limpos, complemento das lajes (mais quietos) */
 .cert-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  border: 1px solid var(--line-0);
-  border-radius: var(--r-sm);
-  overflow: hidden;
+  gap: 8px;
 }
 .cert {
-  padding: 0.7rem 0.9rem;
-  background: var(--bg-2);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0.6rem 0.8rem;
+  background: transparent;
+  border: 0.5px solid var(--line-1);
+  border-radius: var(--r-md);
   font-family: var(--f-body);
   font-size: 0.78rem;
   color: var(--t-2);
-  border-right: 1px solid var(--line-0);
-  border-bottom: 1px solid var(--line-0);
-  transition: background 0.15s, color 0.15s;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
 }
-.cert:hover { background: var(--bg-3); color: var(--t-1); }
-.cert:nth-child(2n) { border-right: none; }
-.cert:nth-last-child(-n+2) { border-bottom: none; }
+.cert::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cyan);
+  flex-shrink: 0;
+  transition: background 0.2s var(--ease);
+}
+.cert:hover {
+  border-color: var(--cyan-line);
+  color: var(--t-0);
+  background: var(--cyan-dim);
+}
+.cert:hover::before { background: var(--cyan); }
 
 /* ─── CONTATO ─── */
 #contact {
@@ -708,7 +954,7 @@ section {
   font-size: 0.95rem;
   line-height: 1.78;
   color: var(--t-2);
-  margin-bottom: 2.75rem;
+  margin-bottom: 1.5rem;
   max-width: 440px;
   margin-left: auto;
   margin-right: auto;
@@ -763,13 +1009,13 @@ section {
   display: block;
   width: 22px;
   height: 1px;
-  background: var(--t-2);
+  background: #cbd0d5;
   transition: transform 0.25s var(--ease), opacity 0.2s var(--ease), width 0.2s var(--ease);
   transform-origin: center;
 }
-.nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); background: var(--t-0); }
+.nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); background: #ffffff; }
 .nav-toggle.open span:nth-child(2) { opacity: 0; width: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: var(--t-0); }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: #ffffff; }
 
 /* Mobile overlay menu */
 .mobile-menu {
@@ -777,7 +1023,7 @@ section {
   position: fixed;
   inset: 0;
   top: 58px;
-  background: rgba(245, 244, 240, 0.97);
+  background: rgba(11, 15, 20, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 99;
@@ -799,22 +1045,22 @@ section {
   font-size: 2rem;
   font-weight: 300;
   letter-spacing: -0.02em;
-  color: var(--t-2);
+  color: #8a929b;
   padding: 0.85rem 0;
-  border-bottom: 1px solid var(--line-0);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   width: 100%;
   display: block;
   transition: color 0.15s var(--ease), padding-left 0.2s var(--ease);
 }
-.mobile-menu a:first-child { border-top: 1px solid var(--line-0); }
-.mobile-menu a:hover { color: var(--t-0); padding-left: 0.5rem; }
+.mobile-menu a:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+.mobile-menu a:hover { color: #ffffff; padding-left: 0.5rem; }
 .mobile-menu-contact {
   margin-top: 2rem;
   font-family: var(--f-mono);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--t-3);
+  color: #8a929b;
 }
 
 /* cursor:none apenas em dispositivos não-touch */
@@ -837,7 +1083,7 @@ section {
   position: fixed;
   top: 0; left: 0;
   width: 32px; height: 32px;
-  border: 1px solid rgba(0,152,184,0.3);
+  border: 1px solid rgba(47,128,208,0.3);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
@@ -977,14 +1223,93 @@ footer p {
 }
 .acc-trigger[aria-expanded="true"] .acc-icon {
   transform: rotate(180deg);
-  background: rgba(0,200,240,0.15);
-  box-shadow: 0 0 12px rgba(0,200,240,0.2);
+  background: rgba(38,102,166,0.15);
+  box-shadow: 0 0 12px rgba(38,102,166,0.20);
   animation: none;
 }
 .acc-trigger:hover .acc-icon {
-  background: rgba(0,200,240,0.14);
-  box-shadow: 0 0 10px rgba(0,200,240,0.18);
+  background: rgba(38,102,166,0.12);
+  box-shadow: 0 0 10px rgba(38,102,166,0.16);
   animation: none;
+}
+
+/* ─── TRAJETÓRIA · Linha do Tempo Viva (escopo: #exp-acc) ─── */
+#exp-acc { position: relative; padding-left: 32px; }
+/* eixo do tempo: vivo no presente, esmaecido rumo ao passado */
+#exp-acc::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: var(--exp-top, 1.9rem);
+  height: var(--exp-h, calc(100% - 3.8rem));
+  width: 2px;
+  background: linear-gradient(180deg, var(--cyan), rgba(38,102,166,0.12));
+}
+#exp-acc .acc-item { position: relative; }
+/* nó do cargo, ancorado ao eixo */
+#exp-acc .acc-item::before {
+  content: '';
+  position: absolute;
+  left: -28.5px;
+  top: 1.9rem;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: var(--bg-0);
+  border: 2px solid var(--cyan);
+  z-index: 1;
+  transition: background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+/* nó ativo: acompanha o acordeon ABERTO */
+#exp-acc .acc-item:has(> .acc-trigger[aria-expanded="true"])::before {
+  background: var(--cyan);
+  box-shadow: 0 0 0 5px rgba(38,102,166,0.16);
+  animation: expPulse 2.1s ease-in-out infinite;
+}
+/* presente (1º item): pulsa apenas enquanto NENHUM acordeon está aberto */
+#exp-acc:not(:has(.acc-trigger[aria-expanded="true"])) .acc-item:first-child::before {
+  background: var(--cyan);
+  box-shadow: 0 0 0 5px rgba(38,102,166,0.16);
+  animation: expPulse 2.1s ease-in-out infinite;
+}
+/* clareza visual do item selecionado: cargo destacado em azul ao abrir */
+#exp-acc .acc-item:has(> .acc-trigger[aria-expanded="true"]) .acc-role { color: var(--cyan); }
+@keyframes expPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(38,102,166,0.12); }
+  50%      { box-shadow: 0 0 0 8px rgba(38,102,166,0.20); }
+}
+/* cabeçalho reordenado: cargo (herói) em cima, meta-linha abaixo */
+#exp-acc .acc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-top: 0.3rem;
+}
+#exp-acc .acc-period::before {
+  content: '·';
+  margin: 0 0.5rem;
+  color: var(--t-3);
+}
+/* bullets — Opção C com abertura + métricas em destaque */
+#exp-acc .exp-bullets li {
+  display: block;             /* anula o flex base p/ o texto fluir inline c/ as métricas */
+  position: relative;
+  border-bottom: none;
+  padding: 0.6rem 0 0.6rem 1.15rem;
+  line-height: 1.8;
+  color: var(--t-1);          /* cor de texto predominante (escura) */
+}
+#exp-acc .exp-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--t-3);
+}
+#exp-acc .mtr { color: var(--cyan); font-weight: 500; }
+@media (prefers-reduced-motion: reduce) {
+  #exp-acc .acc-item::before { animation: none; }
 }
 
 /* Corpo colapsável */
@@ -1027,20 +1352,193 @@ footer p {
   border-bottom: none;
 }
 
-#diff-acc .acc-role {
-  font-size: clamp(1.05rem, 2vw, 1.3rem);
-  margin-top: 0.1rem;
+/* ─── MAPA DE ENTREGAS · clímax (escopo: #proj-map) ─── */
+#proj-map {
+  margin-top: 3rem;
+  background: #0b0f14;
+  border-radius: var(--r-lg);
+  padding: 1.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* 50% animação · 50% modal */
+  gap: 1rem;
+  align-items: stretch;   /* as duas metades com a mesma altura */
 }
-#diff-acc .acc-period {
-  font-size: 0.58rem;
-  opacity: 0.7;
+.pm-stage { min-width: 0; display: flex; flex-direction: column; }
+.pm-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b7783;
+  margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0;
+}
+.pm-eyebrow b { color: #ffffff; font-weight: 600; font-size: 1.08em; }
+.pm-eyebrow span { color: #6b7783; }
+/* Opção "Impacto que Conta": resultados em SIGNAL */
+.pm-metrics {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  flex: 1;
+  align-content: stretch;
+  margin-top: 1rem;
+}
+.pm-stat {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.055);
+  border-radius: var(--r-sm);
+  text-align: left;
+  cursor: pointer;
+  padding: 0.9rem 0.95rem;
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.pm-stat:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(89,153,217,0.26);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+}
+.pm-mv {
+  font-family: var(--f-heading); font-size: clamp(2rem, 3vw, 2.55rem); font-weight: 600;
+  letter-spacing: -0.03em; color: #fff; line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.pm-ms { font-size: 0.48em; color: #5999d9; vertical-align: super; margin-left: 0.04em; }
+.pm-statl {
+  font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase; color: #aab4bf; transition: color 0.2s var(--ease);
+}
+.pm-stat:hover .pm-statl, .pm-stat.sel .pm-statl { color: #ffffff; }
+.pm-stat.sel { position: relative; }
+.pm-stat.sel::before {
+  content: ''; position: absolute; left: -1px; top: 12px; bottom: 12px;
+  width: 2px; border-radius: 2px; background: var(--cyan);
+}
+.pm-stat.sel {
+  background: rgba(47,128,208,0.075);
+  border-color: rgba(89,153,217,0.32);
+}
+.pm-hero {
+  background: linear-gradient(90deg, #1c4d7d, #2666a6, #2f80d0, #5999d9, #2666a6);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hm-liquid 4.5s linear infinite;
+}
+.pm-hero .pm-ms { -webkit-text-fill-color: #5999d9; }
+@media (prefers-reduced-motion: reduce) { .pm-hero { animation: none; } }
+#pm-svg { width: 100%; height: 320px; display: block; }
+.pm-lnk { stroke: rgba(89,153,217,0.40); stroke-width: 1.25; transition: stroke 0.25s var(--ease); }
+.pm-lnk.hot { stroke: #5999d9; stroke-width: 1.75; }
+.pm-nd {
+  fill: #1b2b3a; stroke: #2f80d0; stroke-width: 2;
+  cursor: pointer; transition: fill 0.25s var(--ease), stroke 0.25s var(--ease), filter 0.25s var(--ease);
+}
+.pm-nd:hover, .pm-nd.sel { fill: var(--cyan); stroke: #5999d9; filter: drop-shadow(0 0 6px rgba(47,128,208,0.7)); }
+.pm-val { fill: #fff; font-family: var(--f-heading); font-weight: 600; text-anchor: middle; pointer-events: none; }
+.pm-nx { fill: #ffffff; font-family: var(--f-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.04em; text-anchor: middle; pointer-events: none; }
+.pm-pulse { animation: pmPulse 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes pmPulse { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+.pm-panel {
+  background: #0b0f14;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--r-md);
+  padding: 1.35rem 1.5rem;
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+@keyframes pmPing {
+  0%   { border-color: rgba(47,128,208,0.90); box-shadow: 0 0 0 4px rgba(47,128,208,0.22), 0 0 22px rgba(47,128,208,0.16); }
+  25%  { border-color: rgba(47,128,208,0.82); box-shadow: 0 0 0 4px rgba(47,128,208,0.18), 0 0 18px rgba(47,128,208,0.12); }
+  70%  { border-color: rgba(47,128,208,0.40); box-shadow: 0 0 0 2px rgba(47,128,208,0.07), 0 0 8px rgba(47,128,208,0.05); }
+  100% { border-color: rgba(255,255,255,0.10); box-shadow: none; }
+}
+.pm-panel.pinging { animation: pmPing 2s ease-out forwards; }
+.pm-ix { font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: #5999d9; }
+.pm-metric { font-family: var(--f-heading); font-size: 2.2rem; font-weight: 600; letter-spacing: -0.03em; color: #fff; line-height: 1; margin: 0 0 0.15rem; font-variant-numeric: tabular-nums; }
+.pm-metric .s { font-size: 0.45em; color: #5999d9; vertical-align: super; }
+.pm-ml { font-family: var(--f-mono); font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8a929b; margin-bottom: 0.85rem; }
+.pm-ti { font-family: var(--f-heading); font-size: 1rem; font-weight: 500; color: #fff; line-height: 1.3; }
+.pm-co { font-size: 0.78rem; color: #8a929b; margin: 0.2rem 0 0.55rem; }
+.pm-de { font-size: 0.84rem; line-height: 1.65; color: #b4bec9; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+/* alterna mapa (desktop) × accordion (mobile/fallback) */
+@media (min-width: 769px) { #projetos #proj-acc { display: none; } }
+@media (max-width: 768px) {
+  #proj-map { display: none; }
+  #projetos #proj-acc { margin-top: 2rem; }
+}
+@media (max-width: 900px) and (min-width: 769px) {
+  #proj-map { grid-template-columns: 1fr; }
+  #pm-svg { height: 260px; }
+}
+/* Desktop largo: rótulo em cima; métricas (esq.) e painel (dir.) na MESMA linha,
+   para que o painel da direita alinhe topo e altura com os blocos da esquerda. */
+@media (min-width: 901px) {
+  #proj-map { grid-template-rows: auto 1fr; }
+  .pm-stage { display: contents; }
+  .pm-eyebrow { grid-column: 1; grid-row: 1; }
+  .pm-metrics { grid-column: 1; grid-row: 2; margin-top: 0; }
+  .pm-panel  { grid-column: 2; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) { .pm-pulse { animation: none; } }
+
+/* ─── LIMITE DE LEITURA (medida de linha) ───
+   Só "morde" em telas largas; em tablet/mobile as colunas já são
+   mais estreitas que o cap, então não tem efeito. */
+.about-body { max-width: 680px; }
+.exp-body   { max-width: 820px; }
+
+/* ─── GUARDA DE OVERFLOW (mídia nunca estoura a viewport) ─── */
+img, svg, canvas, video { max-width: 100%; }
+
+/* ═══════════════════════════════════════════
+   DESKTOP GRANDE & ULTRAWIDE — 1441px+
+   Conteúdo centralizado e limitado; fundos seguem full-bleed.
+   Gutter = espaço lateral que cresce com a tela, capando o
+   conteúdo em 1440px no centro (24"/27"/29"/34").
+═══════════════════════════════════════════ */
+@media (min-width: 1441px) {
+  :root { --gutter: max(4rem, (100vw - 1440px) / 2); }
+  nav,
+  section,
+  #hero,
+  footer {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  .divider {
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+  }
+  /* Contato/rodapé: o grid interno é limitado e centralizado,
+     mas o fundo escuro (.footer-final) permanece full-bleed. */
+  .ff-split {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ─── RESPONSIVE ─── */
 /* ═══════════════════════════════════════════
-   TABLET — 1024px
+   TABLET — 900px e abaixo
+   (iPad 11" retrato = 834px → colapsa aqui;
+    iPad 13" retrato = 1024px → mantém layout de 2 colunas)
 ═══════════════════════════════════════════ */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   nav { padding: 0 2rem; }
   section { padding: 5.5rem 2rem; }
   #hero { padding: 0 2rem; padding-top: 64px; }
@@ -1068,6 +1566,7 @@ footer p {
   nav { padding: 0 1.25rem; height: 58px; }
   .nav-links { display: none; }
   .nav-contact { display: none; }
+  #hero-net { display: none; }   /* rede reativa só no desktop */
   .nav-toggle {
     display: flex;
     cursor: pointer; /* FIX #2 — cursor:none estava no nav-toggle */
@@ -1125,6 +1624,8 @@ footer p {
     animation: none;
     opacity: 1;
   }
+  /* scan beam só faz sentido na fileira horizontal do desktop */
+  .hm-base, .hm-scan { display: none; }
   /* FIX #7 — lógica de borda corrigida: sem sobreposição */
   .hm-item {
     padding: 1.25rem;
@@ -1239,10 +1740,20 @@ footer p {
   .sitem-name { font-size: 0.88rem; }
 
   /* ── Diferenciais ── */
-  #diff-acc .acc-role { font-size: 1.05rem; }
+  .diff-name { font-size: 1.1rem; }
+  .diff-rule { display: none; }
+  .diff-desc {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 0.6rem;
+    margin-left: calc(26px + 1.25rem);
+  }
+  .diff-item:hover { transform: none; background: transparent; }
+  .diff-item:hover .diff-name { font-weight: 300; color: #abb1b8; }
 
   /* ── Formação ── */
   .edu-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .edu-row:nth-child(2), .edu-row:nth-child(3), .edu-row:nth-child(4) { margin-left: 0; }
   .edu-degree { font-size: 0.88rem; line-height: 1.4; }
   .edu-row { padding: 1.1rem 0; }
   .cert-list { grid-template-columns: 1fr; gap: 1px; }
@@ -1271,6 +1782,23 @@ footer p {
 
   /* ── Footer ── */
   footer { padding: 1.25rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+
+  /* ── Rodapé final · mobile ── */
+  .ff-inner { padding: 3.5rem 1.5rem 2rem; }
+  .ff-sub { margin-bottom: 2.5rem; }
+  .ff-index { grid-template-columns: 1fr; }
+  .ff-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.25rem;
+    border-right: none;
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  }
+  .ff-row:last-child { border-bottom: none; }
+  .ff-top-line { flex-direction: row-reverse; gap: 0.75rem; flex: unset; }
+  .ff-lab { font-size: 1.2rem; order: -1; }
+  .ff-base { flex-direction: column; gap: 0.4rem; margin-top: 2rem; }
 
   /* ── Mobile menu overlay ── */
   .mobile-menu a {
@@ -1337,12 +1865,12 @@ footer p {
   left: auto;
   max-width: 360px;
   width: calc(100% - 3rem);
-  background: var(--bg-1);
-  border: 1px solid var(--line-1);
+  background: #0b0f14;
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--r-lg);
-  padding: 1rem 1.1rem;
+  padding: 1.1rem 1.2rem;
   z-index: 9980;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 12px 34px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
@@ -1357,11 +1885,11 @@ footer p {
   gap: 0.85rem;
 }
 #mobile-notice-icon {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
-  background: var(--cyan-dim);
-  border: 1px solid var(--cyan-line);
+  background: rgba(47,128,208,0.12);
+  border: 1px solid rgba(47,128,208,0.30);
   border-radius: var(--r-sm);
   display: flex;
   align-items: center;
@@ -1369,8 +1897,8 @@ footer p {
   margin-top: 0.05rem;
 }
 #mobile-notice-icon svg {
-  width: 13px; height: 13px;
-  stroke: var(--cyan);
+  width: 14px; height: 14px;
+  stroke: #5999d9;
   fill: none;
   stroke-width: 1.5;
   stroke-linecap: round;
@@ -1382,33 +1910,264 @@ footer p {
 }
 #mobile-notice-title {
   font-family: var(--f-heading);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   font-weight: 600;
-  color: var(--t-0);
+  color: #ffffff;
   letter-spacing: -0.01em;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 #mobile-notice-text {
   font-family: var(--f-body);
-  font-size: 0.75rem;
-  line-height: 1.55;
-  color: var(--t-2);
+  font-size: 0.76rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #abb1b8;
 }
 #mobile-notice-close {
   background: none;
   border: none;
   padding: 0.2rem;
   cursor: pointer;
-  color: var(--t-3);
+  color: #6b7783;
   flex-shrink: 0;
   line-height: 1;
   font-size: 1rem;
   transition: color 0.15s;
   margin-top: -0.1rem;
 }
-#mobile-notice-close:hover { color: var(--t-1); }
+#mobile-notice-close:hover { color: #ffffff; }
+/* Aviso é exclusivo do mobile (a mensagem recomenda o desktop) */
+@media (min-width: 769px) { #mobile-notice { display: none; } }
 
+/* ─── DIFERENCIAIS · revelação editorial ─── */
+.diff-dark {
+  background: #0b0f14;   /* cor predominante de marca, sólida (sem gradiente nas pontas) */
+  border-radius: 0;
+  margin: 0;
+  position: relative;
+}
+.diff-dark > * { position: relative; z-index: 1; }
+.diff-label { color: #5999d9; }
+.diff-label::before { background: #5999d9; }
+.diff-title { color: #ffffff; }
+.diff-title strong { color: #ffffff; }
+.diff-list {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.diff-item {
+  position: relative;
+  padding: 1.2rem 1rem;
+  border-radius: var(--r-md);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: background 0.35s var(--ease), transform 0.35s var(--ease-out);
+}
+.diff-item.in {
+  animation: diffRise 0.7s var(--ease-out) forwards;
+}
+.diff-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+.diff-num {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #3a6ea5;
+  width: 26px;
+  flex-shrink: 0;
+  transition: color 0.35s var(--ease);
+}
+.diff-name {
+  font-family: var(--f-heading);
+  font-weight: 300;
+  font-size: 1.35rem;
+  letter-spacing: -0.025em;
+  color: #abb1b8;
+  flex-shrink: 0;
+  transition: color 0.35s var(--ease), font-weight 0.35s var(--ease);
+}
+.diff-rule {
+  flex: 1;
+  height: 1px;
+  background: #3e5266;
+  align-self: center;
+  position: relative;
+  overflow: hidden;
+}
+.diff-rule::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.55s var(--ease-out);
+}
+.diff-desc {
+  font-family: var(--f-body);
+  font-weight: 300;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #e7eaed;
+  max-width: none;   /* ocupa toda a largura disponível até o fim da linha (alinha com a régua) */
+  margin-top: 0;
+  margin-left: calc(26px + 1.25rem);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.45s var(--ease), opacity 0.4s var(--ease), margin-top 0.45s var(--ease);
+}
+.diff-item:hover {
+  background: #324657;
+  transform: translateX(5px);
+}
+.diff-item:hover .diff-num { color: #5999d9; }
+.diff-item:hover .diff-name { color: #ffffff; font-weight: 500; }
+.diff-item:hover .diff-rule::after { transform: scaleX(1); }
+.diff-item:hover .diff-desc {
+  max-height: 200px;   /* largura total → menos linhas; folga p/ não cortar texto */
+  opacity: 1;
+  margin-top: 0.7rem;
+}
+@keyframes diffRise {
+  to { opacity: 1; transform: translateY(0); }
+}
+.diff-dark .divider { display: none; }
+.divider:has(+ .diff-dark) { display: none; }
+.diff-dark + .divider { display: none; }
 
+/* ─── RODAPÉ FINAL · índice navegável ─── */
+.footer-final {
+  background: #0b0f14;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.divider:has(+ .footer-final) { display: none; }
+.ff-split {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: stretch;
+  min-height: 520px;
+}
+.ff-inner {
+  max-width: 680px;
+  padding: 4.5rem 4rem 2.5rem;
+}
+.ff-canvas-col {
+  position: relative;
+}
+#contact-net {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+@media (max-width: 1100px) {
+  .ff-split { grid-template-columns: 1fr; min-height: auto; }
+  .ff-inner { padding: 4rem 2.5rem 2.5rem; max-width: 100%; }
+  .ff-canvas-col { display: none; }
+}
+.ff-label { color: #5999d9; }
+.ff-label::before { background: #5999d9; }
+.ff-heading { color: #ffffff; }
+.ff-heading strong { color: #ffffff; }
+.ff-sub {
+  color: #abb1b8;
+  font-weight: 300;
+  max-width: 520px;
+  margin-bottom: 3.5rem;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+.ff-index {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.ff-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 1.5rem;
+  border-right: 0.5px solid rgba(255,255,255,0.1);
+  text-decoration: none;
+  transition: background 0.3s var(--ease);
+}
+.ff-row:last-child { border-right: none; }
+.ff-top-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ff-idx {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #3a6ea5;
+  transition: color 0.3s var(--ease);
+}
+.ff-lab {
+  font-family: var(--f-heading);
+  font-weight: 300;
+  font-size: 1.35rem;
+  letter-spacing: -0.025em;
+  color: #e7eaed;
+  transition: color 0.3s var(--ease), font-weight 0.3s var(--ease);
+}
+.ff-channel {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.ff-ico {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: #5a6e80;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s var(--ease);
+}
+.ff-row:hover .ff-ico { stroke: var(--green); }
+.ff-arr {
+  font-family: var(--f-mono);
+  font-size: 1rem;
+  color: #3a6ea5;
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease-out);
+}
+.ff-row:hover { background: #324657; }
+.ff-row:hover .ff-idx { color: #5999d9; }
+.ff-row:hover .ff-lab { color: #ffffff; font-weight: 500; }
+.ff-row:hover .ff-arr { color: var(--green); transform: translate(2px, -2px); }
+.ff-base {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+.ff-base span {
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4f6175;
+}
+.ff-clock { color: #5999d9 !important; }
 
 </style>
 </head>
@@ -1463,6 +2222,7 @@ footer p {
 
 <!-- HERO -->
 <section id="hero">
+  <canvas id="hero-net" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <h1 class="hero-name">
       Jéssica<br>
@@ -1470,29 +2230,32 @@ footer p {
     </h1>
     <p class="hero-position">Gerente de Projetos · Caruaru, PE</p>
     <p class="hero-statement">
-      Mais de 12 anos conduzindo projetos e negócios de alta complexidade com <strong>governança estruturada, visão de negócio e entrega que importa</strong>. De redes nacionais de varejo a startups SaaS e Consultoria de Software.
+      Sou gerente de projetos, mas <strong>meu trabalho vai muito além de cronogramas e cerimônias</strong>.<br><br>
+      Há mais de 12 anos atuo em ambientes onde <strong>resultado não é opcional</strong>: operações em escala nacional, logística, varejo, SaaS e consultoria de software. Meu papel é transformar objetivos em entregas, organizar o que está caótico e <strong>construir processos que continuem funcionando mesmo depois que o projeto termina</strong>.
     </p>
     <div class="hero-actions">
       <a href="#projetos" class="btn-fill">Ver Projetos e Impacto</a>
-      <a href="mailto:jessical.mariano@icloud.com" class="btn-outline">Entrar em Contato <span class="arr">→</span></a>
+      <a href="https://wa.me/5581996404335" target="_blank" rel="noopener noreferrer" class="btn-outline">Entrar em Contato <span class="arr">→</span></a>
     </div>
     <div class="hero-metrics">
       <div class="hm-item">
-        <span class="hm-value counter" data-target="115" data-suffix="+">0</span>
+        <span class="hm-value counter" data-target="115"><span class="hm-num">0</span><span class="hm-suf">+</span></span>
         <span class="hm-label">Unidades em Rollout</span>
       </div>
       <div class="hm-item">
-        <span class="hm-value counter" data-target="100" data-suffix="h+">0</span>
-        <span class="hm-label">Economia Mensal com IA</span>
+        <span class="hm-value counter hm-hero" data-target="100"><span class="hm-num">0</span><span class="hm-suf">h+</span></span>
+        <span class="hm-label">Economia Mensal com IA<span class="hm-dot"></span></span>
       </div>
       <div class="hm-item">
-        <span class="hm-value counter" data-target="12" data-suffix="+">0</span>
+        <span class="hm-value counter" data-target="12"><span class="hm-num">0</span><span class="hm-suf">+</span></span>
         <span class="hm-label">Anos de Experiência</span>
       </div>
       <div class="hm-item">
-        <span class="hm-value counter" data-target="9" data-suffix="">0</span>
+        <span class="hm-value counter" data-target="9"><span class="hm-num">0</span></span>
         <span class="hm-label">Projetos Simultâneos</span>
       </div>
+      <div class="hm-base"></div>
+      <div class="hm-scan"></div>
     </div>
   </div>
 </section>
@@ -1505,26 +2268,26 @@ footer p {
   <h2 class="s-heading fade-up">Estratégia que se<br>traduz em <em>entrega real</em></h2>
   <div class="about-grid">
     <div class="about-body fade-up">
-      <p>Minha trajetória é construída sobre uma premissa simples: <strong>clareza de escopo, rigor de processo e entrega que importa</strong>. Não gerencio projetos, gerencio resultados.</p>
-      <p>Com mais de 12 anos em ambientes de alta complexidade, de redes nacionais de varejo a startups SaaS e consultoras de software, desenvolvi uma capacidade rara: <em>operar com igual precisão no nível estratégico e no nível operacional</em>.</p>
-      <p>Sei quando acelerar e quando pausar. Sei ler um stakeholder difícil, reestruturar um backlog caótico, blindar um cronograma e construir o processo metodológico que vai sustentar o projeto muito além da minha saída.</p>
-      <p>Formada em Administração. Pós-graduada em Gestão de Projetos. Pós-graduação em Gerenciamento de Projetos e Metodologias Ágeis em andamento na PUCRS. <strong>PSM I certificada, Lean Six Sigma Yellow Belt</strong> e uma visão de negócio que vai muito além do Jira.</p>
+      <p>Minha carreira não começou em projetos. Começou na operação. Antes de liderar iniciativas de software, SaaS e transformação de processos, vivi por anos a rotina de operações, gestão de equipes, indicadores, metas e execução. Foi ali que aprendi uma lição que carrego até hoje: <strong>projeto bom não é o que termina. É o que continua funcionando depois</strong>.</p>
+      <p>Ao longo de mais de 12 anos de experiência, atuei em contextos muito diferentes. Foram: varejo, logística, serviços, tecnologia e consultoria. Essa trajetória me deu a capacidade de <strong>enxergar tanto a estratégia quanto a execução</strong>, conectando objetivos de negócio às entregas do dia a dia.</p>
+      <p>Gosto de organizar o que está confuso, criar estrutura onde ela não existe e transformar ideias em planos executáveis. Seja reestruturando processos, conduzindo projetos de software ou alinhando stakeholders com interesses distintos, meu foco é sempre o mesmo: <strong>gerar resultado de forma sustentável</strong>.</p>
+      <p>Sou formada em Administração, pós-graduada em Gestão de Projetos, <strong>certificada PSM I e membro do PMI</strong>. Atualmente curso MBA em Gerenciamento de Projetos e Metodologias Ágeis pela PUCRS. Mais do que metodologias e ferramentas, acredito que projetos são feitos por pessoas, processos, decisões e capacidade de execução.</p>
     </div>
     <div class="about-cards fade-up">
       <div class="acard">
         <div class="acard-label">Visão Sistêmica</div>
-        <h3 class="acard-title">Do escopo ao impacto</h3>
-        <p>Conduz o ciclo completo de gestão, da definição de requisitos à aprovação de QA, com governança estruturada e foco permanente no resultado de negócio.</p>
+        <h3 class="acard-title">Do escopo ao resultado</h3>
+        <p>Conecta estratégia, operação e tecnologia ao longo de todo o ciclo do projeto, garantindo que cada entrega gere impacto real para o negócio.</p>
       </div>
       <div class="acard">
         <div class="acard-label">Agilidade Real</div>
-        <h3 class="acard-title">Metodologia que funciona</h3>
-        <p>Scrum, Kanban, Waterfall ou híbrido. A escolha é tática, não dogma. O que importa é entregar com previsibilidade e qualidade.</p>
+        <h3 class="acard-title">Método a serviço da entrega</h3>
+        <p>Scrum, Kanban, Waterfall ou híbrido. A metodologia é uma ferramenta, não o objetivo. O foco está na previsibilidade, qualidade e resultado.</p>
       </div>
       <div class="acard">
         <div class="acard-label">IA e Automação</div>
-        <h3 class="acard-title">PM do futuro, hoje</h3>
-        <p>Integrou IA ao fluxo de gestão gerando mais de 100h por mês de economia em documentação técnica, geração de QA e comunicação com stakeholders.</p>
+        <h3 class="acard-title">Tecnologia com propósito</h3>
+        <p>Utilizo IA para acelerar documentação, QA e comunicação, liberando tempo para o que realmente exige análise, decisão e gestão.</p>
       </div>
     </div>
   </div>
@@ -1541,9 +2304,8 @@ footer p {
     <div class="acc-item fade-up">
       <button type="button" class="acc-trigger" aria-expanded="false">
         <div class="acc-trigger-left">
-          <span class="acc-period">Jan 2026 — Presente</span>
-          <span class="acc-company">Mukutu <span class="acc-type">· Consultoria e Software House</span></span>
           <span class="acc-role">Gerente de Projetos de Software</span>
+          <span class="acc-meta"><span class="acc-company">Mukutu <span class="acc-type">· Consultoria e Software House</span></span><span class="acc-period">Jan 2026 — Presente</span></span>
         </div>
         <div class="acc-trigger-right">
           <span class="acc-tags-inline">
@@ -1556,18 +2318,18 @@ footer p {
         <div class="acc-body-inner">
           <div class="exp-body">
             <ul class="exp-bullets">
-              <li>Gerencia portfólio de 9 projetos simultâneos para 7 clientes de diferentes portes e segmentos, com foco nos projetos estratégicos da agência, incluindo clientes do setor industrial com receita anual de R$ 2,7 bilhões e instituições educacionais de referência internacional.</li>
-              <li>Estruturou e montou do zero o processo de engenharia de requisitos da agência: levantamento de requisitos funcionais e não funcionais, elaboração de histórias de usuário, critérios de aceite e integração com QA, função inexistente antes da sua chegada.</li>
-              <li>Responsável pela governança de entregas: define escopo, conduz planejamento, controla cronograma e riscos e realiza aprovação final de QA antes de cada deploy, em projetos ágeis, waterfall e híbridos.</li>
-              <li>Desenvolveu a base metodológica da agência: modelos de status report, documentação de requisitos e critérios de aceite, atuando com a diretoria na definição de padrões institucionais de gestão.</li>
-              <li>Utiliza automações com IA integradas ao fluxo de gestão, com economia estimada de mais de 100 horas mensais em documentação técnica, geração de QA, histórias de usuário e comunicação com stakeholders.</li>
-              <li>Conduz interface estratégica com clientes: alinhamentos, follow-ups, gestão de expectativas e cumprimento de SLA, com autonomia na tomada de decisão sobre escopo e entregas.</li>
-              <li>Planeja e prioriza backlog de projetos e manutenções, definindo roadmap de entregas e assegurando alinhamento entre capacidade do time e expectativas do cliente.</li>
+              <li>Gerencio um portfólio de 9 projetos simultâneos para 7 clientes de diferentes portes e segmentos, conduzindo iniciativas estratégicas para uma das principais fabricantes de motores e soluções de energia do mundo, uma multinacional industrial reconhecida globalmente por inovação e uma das mais respeitadas instituições de educação executiva da América Latina.</li>
+              <li>Estruturei do zero o processo de engenharia de requisitos da organização: levantamento de requisitos funcionais e não funcionais, elaboração de histórias de usuário, critérios de aceite e integração com QA, função inexistente antes da sua chegada.</li>
+              <li>Conduzo a governança de entregas, definindo escopo, planejando projetos, controlando cronograma e riscos e realizando a aprovação final de QA antes de cada deploy, em ambientes ágeis, waterfall e híbridos.</li>
+              <li>Estruturei a base metodológica da organização, criando modelos de status report, documentação de requisitos e critérios de aceite e atuando diretamente com a diretoria na definição de padrões institucionais de gestão.</li>
+              <li>Integro automações com IA ao fluxo de gestão, gerando mais de 100 horas mensais de economia em documentação técnica, QA, histórias de usuário e comunicação com stakeholders.</li>
+              <li>Conduzo a interface estratégica com clientes, realizando alinhamentos, follow-ups, gestão de expectativas e cumprimento de SLA, com autonomia na tomada de decisão sobre escopo e entregas.</li>
+              <li>Planejo e priorizo backlog de projetos e manutenções, defino roadmaps de entrega e asseguro alinhamento entre capacidade do time e expectativas do cliente.</li>
             </ul>
             <div class="exp-kpis">
               <div class="kpi"><span class="kpi-val">9</span><span class="kpi-lbl">Projetos simultâneos</span></div>
               <div class="kpi"><span class="kpi-val">100h+</span><span class="kpi-lbl">Economia/mês com IA</span></div>
-              <div class="kpi"><span class="kpi-val">R$2,7B</span><span class="kpi-lbl">Receita maior cliente</span></div>
+              <div class="kpi"><span class="kpi-val">Perfil de clientes</span><span class="kpi-lbl">Indústrias globais e educação executiva</span></div>
             </div>
           </div>
         </div>
@@ -1577,9 +2339,8 @@ footer p {
     <div class="acc-item fade-up">
       <button type="button" class="acc-trigger" aria-expanded="false">
         <div class="acc-trigger-left">
-          <span class="acc-period">Ago 2024 — Dez 2025</span>
-          <span class="acc-company">Letalk <span class="acc-type">· SaaS B2B</span></span>
           <span class="acc-role">Gerente de Projetos</span>
+          <span class="acc-meta"><span class="acc-company">Letalk <span class="acc-type">· SaaS B2B</span></span><span class="acc-period">Ago 2024 — Dez 2025</span></span>
         </div>
         <div class="acc-trigger-right">
           <span class="acc-tags-inline">
@@ -1592,12 +2353,12 @@ footer p {
         <div class="acc-body-inner">
           <div class="exp-body">
             <ul class="exp-bullets">
-              <li>Gerenciou portfólio de iniciativas estratégicas com gestão de OKRs e KPIs de performance. O canal de parcerias representou mais de 30% do new MRR mensal da empresa.</li>
-              <li>Liderou o projeto Programa MGM com aplicação de EAP, RACI e controle de cronograma, assegurando entregas dentro de escopo, prazo e padrões de qualidade.</li>
-              <li>Conduziu o projeto de implantação do Programa de Parcerias end-to-end, desde o planejamento até a operacionalização, com integração cross-funcional de Produto, Vendas, Marketing e Tecnologia.</li>
-              <li>Priorizou backlog e conduziu alinhamentos estratégicos com stakeholders de diferentes níveis hierárquicos, assegurando coerência entre entregas e objetivos corporativos.</li>
-              <li>Estruturou processos e playbooks operacionais para squads multidisciplinares, estabelecendo padrões de execução e previsibilidade de entregas.</li>
-              <li>Liderou cerimônias ágeis com foco em gestão de riscos, priorização e alinhamento entre times de produto e negócio.</li>
+              <li>Gerenciei o portfólio de iniciativas estratégicas com gestão de OKRs e KPIs de performance. O canal de parcerias representou mais de 30% do new MRR mensal da empresa.</li>
+              <li>Liderei o projeto Programa MGM com aplicação de EAP, RACI e controle de cronograma, assegurando entregas dentro de escopo, prazo e padrões de qualidade.</li>
+              <li>Conduzi o projeto de implantação do Programa de Parcerias end-to-end, desde o planejamento até a operacionalização, com integração cross-funcional de Produto, Vendas, Marketing e Tecnologia.</li>
+              <li>Priorizei backlog e conduzi alinhamentos estratégicos com stakeholders de diferentes níveis hierárquicos, assegurando coerência entre entregas e objetivos corporativos.</li>
+              <li>Estruturei processos e playbooks operacionais para squads multidisciplinares, estabelecendo padrões de execução e previsibilidade de entregas.</li>
+              <li>Liderei cerimônias ágeis com foco em gestão de riscos, priorização e alinhamento entre times de produto e negócio.</li>
             </ul>
             <div class="exp-kpis">
               <div class="kpi"><span class="kpi-val">30%+</span><span class="kpi-lbl">Do new MRR via parcerias</span></div>
@@ -1611,9 +2372,8 @@ footer p {
     <div class="acc-item fade-up">
       <button type="button" class="acc-trigger" aria-expanded="false">
         <div class="acc-trigger-left">
-          <span class="acc-period">Ago 2023 — Ago 2024</span>
-          <span class="acc-company">Up Car Assistência <span class="acc-type">· Logística e Serviços</span></span>
           <span class="acc-role">Gerente de Projetos</span>
+          <span class="acc-meta"><span class="acc-company">Up Car Assistência <span class="acc-type">· Logística e Serviços</span></span><span class="acc-period">Ago 2023 — Ago 2024</span></span>
         </div>
         <div class="acc-trigger-right">
           <span class="acc-tags-inline">
@@ -1626,10 +2386,10 @@ footer p {
         <div class="acc-body-inner">
           <div class="exp-body">
             <ul class="exp-bullets">
-              <li>Liderou o planejamento e execução end-to-end do lançamento de nova unidade logística, desde a definição de escopo e roadmap até a operacionalização. A iniciativa gerou crescimento de 31% na receita da unidade e viabilizou a entrada de grandes contas corporativas.</li>
-              <li>Conduziu projeto de revisão operacional que resultou em redução de 22% nos custos de manutenção e 18% no consumo de combustível, com gestão de fornecedores, renegociação contratual e monitoramento de KPIs.</li>
-              <li>Estruturou modelo de governança de projetos com aplicação de PDCA, diagnóstico de riscos e acompanhamento de indicadores de performance, promovendo melhoria contínua e previsibilidade de entregas.</li>
-              <li>Gerenciou stakeholders e fornecedores estratégicos, assegurando alinhamento entre escopo, cronograma e metas corporativas ao longo do ciclo de vida dos projetos.</li>
+              <li>Liderei o planejamento e execução end-to-end do projeto de nova unidade logística, desde a definição de escopo e roadmap até a operacionalização. A iniciativa gerou crescimento de 31% na receita da unidade e viabilizou a entrada de grandes contas corporativas.</li>
+              <li>Conduzi projeto de revisão operacional que resultou em redução de 22% nos custos de manutenção e 18% no consumo de combustível, com gestão de fornecedores, renegociação contratual e monitoramento de KPIs.</li>
+              <li>Estruturei modelo de governança de projetos com aplicação de PDCA, diagnóstico de riscos e acompanhamento de indicadores de performance, promovendo melhoria contínua e previsibilidade de entregas.</li>
+              <li>Gerenciei stakeholders e fornecedores estratégicos, assegurando alinhamento entre escopo, cronograma e metas corporativas ao longo do ciclo de vida dos projetos.</li>
             </ul>
             <div class="exp-kpis">
               <div class="kpi"><span class="kpi-val">+31%</span><span class="kpi-lbl">Crescimento de receita</span></div>
@@ -1644,9 +2404,8 @@ footer p {
     <div class="acc-item fade-up">
       <button type="button" class="acc-trigger" aria-expanded="false">
         <div class="acc-trigger-left">
-          <span class="acc-period">Jan 2008 — Ago 2023</span>
-          <span class="acc-company">Entretenimento, Varejo e Serviços <span class="acc-type">· Operações em Escala</span></span>
           <span class="acc-role">Liderança em Operações de Escala</span>
+          <span class="acc-meta"><span class="acc-company">Entretenimento, Varejo e Serviços <span class="acc-type">· Operações em Escala</span></span><span class="acc-period">Jan 2008 — Ago 2023</span></span>
         </div>
         <div class="acc-trigger-right">
           <span class="acc-tags-inline">
@@ -1660,8 +2419,8 @@ footer p {
           <div class="exp-body">
             <ul class="exp-bullets">
               <li><strong>Rollout Nacional de Processos:</strong> Referência regional no projeto de implantação e padronização de processos operacionais em rede de mais de 60 unidades distribuídas nacionalmente. Gerenciou equipe direta de 20 pessoas e coordenou alinhamento com mais de 60 gestores de unidade.</li>
-              <li><strong>Implantação de BI em 115 Unidades:</strong> Definição de requisitos, critérios de aceite e validação de QA no rollout de Power BI em rede nacional de mais de 115 unidades. O projeto consolidou dados operacionais em toda a rede, reduzindo 8 sistemas para uma única plataforma integrada.</li>
-              <li>Trajetória de alta performance: crescimento de faturamento de 50% para 105% de atingimento em rede nacional, com reconhecimento consecutivo como melhor desempenho frente a mais de 110 unidades.</li>
+              <li><strong>Implantação de BI em 115 Unidades: Definição de requisitos, critérios de aceite e validação de QA no rollout de Power BI em rede nacional de mais de 115 unidades. O projeto consolidou dados operacionais em toda a rede, reduzindo 8 sistemas para uma única plataforma integrada.</strong></li>
+              <li><strong>Trajetória de alta performance:</strong> crescimento de faturamento de 50% para 105% de atingimento em rede nacional, com reconhecimento consecutivo como melhor desempenho frente a mais de 110 unidades.</li>
             </ul>
             <div class="exp-kpis">
               <div class="kpi"><span class="kpi-val">115+</span><span class="kpi-lbl">Unidades no BI rollout</span></div>
@@ -1682,6 +2441,23 @@ footer p {
 <section id="projetos" class="bg-alt">
   <div class="s-label">Projetos e Impacto</div>
   <h2 class="s-heading fade-up">Cases que<br><strong>definem padrão</strong></h2>
+
+  <!-- MAPA DE ENTREGAS (desktop) — rede de projetos por impacto -->
+  <div id="proj-map">
+    <div class="pm-stage">
+    <div class="pm-eyebrow"><b>Sistema de Entregas</b></div>
+    <div class="pm-metrics">
+      <button type="button" class="pm-stat sel" data-case="3"><span class="pm-mv pm-hero"><span class="pm-mn" data-count="115">0</span><span class="pm-ms">un</span></span><span class="pm-statl">BI nacional</span></button>
+      <button type="button" class="pm-stat" data-case="4"><span class="pm-mv"><span class="pm-mn" data-count="100">0</span><span class="pm-ms">h+</span></span><span class="pm-statl">Economia IA</span></button>
+      <button type="button" class="pm-stat" data-case="6"><span class="pm-mv"><span class="pm-mn" data-count="31" data-pre="+">0</span><span class="pm-ms">%</span></span><span class="pm-statl">Receita · Up Car</span></button>
+      <button type="button" class="pm-stat" data-case="2"><span class="pm-mv"><span class="pm-mn" data-count="60">0</span><span class="pm-ms">+</span></span><span class="pm-statl">Rollout nacional</span></button>
+      <button type="button" class="pm-stat" data-case="5"><span class="pm-mv"><span class="pm-mn" data-count="30">0</span><span class="pm-ms">%+</span></span><span class="pm-statl">New MRR · Letalk</span></button>
+      <button type="button" class="pm-stat" data-case="1"><span class="pm-mv"><span class="pm-mn" data-count="9">0</span><span class="pm-ms">ativos</span></span><span class="pm-statl">Em curso · Mukutu</span></button>
+    </div>
+    </div>
+    <div class="pm-panel" id="pm-panel"></div>
+  </div>
+
   <div class="acc-list" id="proj-acc">
 
     <div class="acc-item fade-up">
@@ -1700,7 +2476,7 @@ footer p {
       </button>
       <div class="acc-body">
         <div class="acc-body-inner">
-          <p class="acc-desc">Estruturou e mantém o processo completo de engenharia de requisitos da Mukutu, função que não existia na empresa. Do levantamento funcional e não funcional à elaboração de histórias de usuário com critérios de aceite integrados ao QA. Hoje é o padrão metodológico da agência para todos os portes e metodologias.</p>
+          <p class="acc-desc">Estruturei o processo completo de engenharia de requisitos da Mukutu, processo que não existia na organização. Do levantamento funcional e não funcional à elaboração de histórias de usuário com critérios de aceite integrados ao QA. Hoje é o padrão metodológico da agência para todos os portes e metodologias.</p>
           <div class="proj-stats-acc">
             <div class="pstat"><span class="pstat-lbl">Função existia antes?</span><span class="pstat-val">Não</span></div>
             <div class="pstat"><span class="pstat-lbl">Projetos cobertos</span><span class="pstat-val">9 ativos</span></div>
@@ -1728,7 +2504,7 @@ footer p {
       </button>
       <div class="acc-body">
         <div class="acc-body-inner">
-          <p class="acc-desc">Referência regional na implantação e padronização de processos operacionais em rede distribuída. Gestão de equipe de 20 pessoas e coordenação com 60+ gestores, garantindo aderência ao escopo em escala nacional nos setores de entretenimento e varejo.</p>
+          <p class="acc-desc">Referência regional na implantação e padronização de processos operacionais em rede distribuída. Gestão de equipe direta com mais de 20 pessoas e coordenação com mais de 60 gestores, garantindo aderência ao escopo em escala nacional nos setores de entretenimento e varejo.</p>
         </div>
       </div>
     </div>
@@ -1749,7 +2525,7 @@ footer p {
       </button>
       <div class="acc-body">
         <div class="acc-body-inner">
-          <p class="acc-desc">Definição de requisitos, critérios de aceite e validação de QA no rollout de Power BI em rede nacional. Consolidação de dados operacionais em toda a rede, reduzindo 8 sistemas para uma plataforma integrada e suportando decisões por indicadores.</p>
+          <p class="acc-desc">Definição de requisitos, critérios de aceite e validação de QA no rollout de Power BI em rede nacional. Consolidação de dados operacionais em toda a rede, com redução de 8 sistemas para uma plataforma integrada e suporte à tomada de decisão por indicadores.</p>
         </div>
       </div>
     </div>
@@ -1770,7 +2546,7 @@ footer p {
       </button>
       <div class="acc-body">
         <div class="acc-body-inner">
-          <p class="acc-desc">Integrou ferramentas de IA ao fluxo de gestão para geração de QA, histórias de usuário, documentação técnica e comunicação com stakeholders. Economia superior a 100 horas mensais sem perda de rastreabilidade ou qualidade.</p>
+          <p class="acc-desc">Integrei ferramentas de IA ao fluxo de gestão para geração de QA, histórias de usuário, documentação técnica e comunicação com stakeholders. Economia superior a 100 horas mensais, sem perda de rastreabilidade ou qualidade.</p>
         </div>
       </div>
     </div>
@@ -1812,7 +2588,7 @@ footer p {
       </button>
       <div class="acc-body">
         <div class="acc-body-inner">
-          <p class="acc-desc">Lançamento de unidade logística com crescimento de 31% na receita, redução de 22% em custos de manutenção e 18% em combustível. Governança via PDCA, KPIs e renegociação contratual estratégica com fornecedores.</p>
+          <p class="acc-desc">Lançamento de unidade logística com crescimento de 31% na receita, redução de 22% em custos de manutenção e 18% em consumo de combustível. Governança via PDCA, KPIs e renegociação contratual estratégica com fornecedores.</p>
         </div>
       </div>
     </div>
@@ -1828,42 +2604,42 @@ footer p {
   <h2 class="s-heading fade-up">Ferramentas de<br><strong>alto desempenho</strong></h2>
   <div class="stack-grid">
 
-    <div class="fade-up">
+    <div class="fade-up co-mod">
       <div class="scat-label">Gestão e Acompanhamento</div>
       <div class="scat-items">
-        <div class="sitem"><span class="sitem-name">Jira</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Azure DevOps</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Notion</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Trello / Asana</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Confluence</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Miro</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Slack</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
+        <div class="sitem key"><span class="sitem-name">Jira</span></div>
+        <div class="sitem"><span class="sitem-name">Azure DevOps</span></div>
+        <div class="sitem"><span class="sitem-name">Notion</span></div>
+        <div class="sitem key"><span class="sitem-name">Trello / Asana</span></div>
+        <div class="sitem"><span class="sitem-name">Confluence</span></div>
+        <div class="sitem"><span class="sitem-name">Miro</span></div>
+        <div class="sitem key"><span class="sitem-name">Slack</span></div>
       </div>
     </div>
 
-    <div class="fade-up">
+    <div class="fade-up co-mod core">
       <div class="scat-label">Metodologias</div>
       <div class="scat-items">
-        <div class="sitem"><span class="sitem-name">Scrum (PSM I)</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Kanban</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-        <div class="sitem"><span class="sitem-name">OKR</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Lean Six Sigma</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">PDCA</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">EAP / RACI / SWOT</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
+        <div class="sitem key"><span class="sitem-name">Scrum (PSM I)</span></div>
+        <div class="sitem key"><span class="sitem-name">Kanban</span></div>
+        <div class="sitem"><span class="sitem-name">OKR</span></div>
+        <div class="sitem"><span class="sitem-name">Lean Six Sigma</span></div>
+        <div class="sitem"><span class="sitem-name">PDCA</span></div>
+        <div class="sitem"><span class="sitem-name">EAP / RACI / SWOT</span></div>
       </div>
     </div>
 
-    <div class="fade-up">
+    <div class="fade-up co-mod">
       <div class="scat-label">CRM, Analytics e Sistemas</div>
       <div class="scat-items">
-        <div class="sitem"><span class="sitem-name">Power BI</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">HubSpot</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Salesforce</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Zendesk</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Google Workspace</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-        <div class="sitem"><span class="sitem-name">MS Office / Excel</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Protheus</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
-        <div class="sitem"><span class="sitem-name">Sascar</span><div class="sdots"><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div></div></div>
+        <div class="sitem"><span class="sitem-name">Power BI</span></div>
+        <div class="sitem"><span class="sitem-name">HubSpot</span></div>
+        <div class="sitem"><span class="sitem-name">Salesforce</span></div>
+        <div class="sitem"><span class="sitem-name">Zendesk</span></div>
+        <div class="sitem key"><span class="sitem-name">Google Workspace</span></div>
+        <div class="sitem key"><span class="sitem-name">MS Office / Excel</span></div>
+        <div class="sitem"><span class="sitem-name">Protheus</span></div>
+        <div class="sitem"><span class="sitem-name">Sascar</span></div>
       </div>
     </div>
 
@@ -1873,111 +2649,63 @@ footer p {
 <div class="divider"></div>
 
 <!-- DIFERENCIAIS -->
-<section id="diferenciais" class="bg-alt">
-  <div class="s-label">Diferenciais</div>
-  <h2 class="s-heading fade-up">O que me<br><strong>torna diferente</strong></h2>
-  <div class="acc-list" id="diff-acc">
+<section id="diferenciais" class="diff-dark">
+  <div class="s-label diff-label">Diferenciais</div>
+  <h2 class="s-heading fade-up diff-title">O que me<br><strong>torna diferente</strong></h2>
+  <div class="diff-list" id="diff-list">
 
-    <div class="acc-item fade-up">
-      <button type="button" class="acc-trigger" aria-expanded="false">
-        <div class="acc-trigger-left">
-          <span class="acc-period">01</span>
-          <span class="acc-role">Visão de Negócio Real</span>
-        </div>
-        <div class="acc-trigger-right">
-          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </button>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <p class="acc-desc">Não executa tarefas isoladas. Entende o impacto de cada entrega no resultado da empresa e faz a ponte entre o backlog técnico e os objetivos estratégicos com precisão.</p>
-        </div>
+    <div class="diff-item">
+      <div class="diff-row">
+        <span class="diff-num">01</span>
+        <span class="diff-name">Visão de negócio real</span>
+        <span class="diff-rule"></span>
       </div>
+      <p class="diff-desc">Entendo o impacto de cada entrega no resultado do negócio e conecto backlog técnico aos objetivos estratégicos com precisão e responsabilidade pelo resultado final, garantindo que cada decisão de priorização esteja alinhada ao impacto real no negócio.</p>
     </div>
 
-    <div class="acc-item fade-up">
-      <button type="button" class="acc-trigger" aria-expanded="false">
-        <div class="acc-trigger-left">
-          <span class="acc-period">02</span>
-          <span class="acc-role">Liderança Cross-funcional</span>
-        </div>
-        <div class="acc-trigger-right">
-          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </button>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <p class="acc-desc">Conduz times multidisciplinares sem autoridade hierárquica. Produto, tecnologia, vendas e marketing alinhados em torno do mesmo objetivo de entrega e resultado.</p>
-        </div>
+    <div class="diff-item">
+      <div class="diff-row">
+        <span class="diff-num">02</span>
+        <span class="diff-name">Liderança cross-funcional</span>
+        <span class="diff-rule"></span>
       </div>
+      <p class="diff-desc">Conduzo times multidisciplinares sem autoridade hierárquica, alinhando Produto, Tecnologia, Vendas e Marketing em torno de objetivos comuns de entrega e resultado, garantindo foco, coerência e execução consistente entre todas as frentes envolvidas.</p>
     </div>
 
-    <div class="acc-item fade-up">
-      <button type="button" class="acc-trigger" aria-expanded="false">
-        <div class="acc-trigger-left">
-          <span class="acc-period">03</span>
-          <span class="acc-role">Estruturação de Processos</span>
-        </div>
-        <div class="acc-trigger-right">
-          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </button>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <p class="acc-desc">Entra em ambientes sem metodologia e sai deixando uma estrutura que funciona de forma autônoma. Cria playbooks, templates e fluxos que escalam além do projeto.</p>
-        </div>
+    <div class="diff-item">
+      <div class="diff-row">
+        <span class="diff-num">03</span>
+        <span class="diff-name">Estruturação de processos</span>
+        <span class="diff-rule"></span>
       </div>
+      <p class="diff-desc">Entro em ambientes sem metodologia estruturada e construo processos do zero que passam a operar de forma autônoma, criando playbooks, templates e fluxos que garantem previsibilidade e escalabilidade além da minha atuação direta.</p>
     </div>
 
-    <div class="acc-item fade-up">
-      <button type="button" class="acc-trigger" aria-expanded="false">
-        <div class="acc-trigger-left">
-          <span class="acc-period">04</span>
-          <span class="acc-role">Governança Sem Burocracia</span>
-        </div>
-        <div class="acc-trigger-right">
-          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </button>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <p class="acc-desc">Implementa controles de escopo, cronograma e risco que protegem o projeto sem travar o time. Governança que habilita velocidade, não que a impede.</p>
-        </div>
+    <div class="diff-item">
+      <div class="diff-row">
+        <span class="diff-num">04</span>
+        <span class="diff-name">Governança sem burocracia</span>
+        <span class="diff-rule"></span>
       </div>
+      <p class="diff-desc">Implemento controles de escopo, cronograma e risco que protegem o projeto sem travar o time, garantindo governança que habilita velocidade em vez de burocracia.</p>
     </div>
 
-    <div class="acc-item fade-up">
-      <button type="button" class="acc-trigger" aria-expanded="false">
-        <div class="acc-trigger-left">
-          <span class="acc-period">05</span>
-          <span class="acc-role">Comunicação Executiva</span>
-        </div>
-        <div class="acc-trigger-right">
-          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </button>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <p class="acc-desc">Fala a língua do C-level e do time técnico. Transforma complexidade em narrativa de negócio e mantém stakeholders informados, alinhados e confiantes.</p>
-        </div>
+    <div class="diff-item">
+      <div class="diff-row">
+        <span class="diff-num">05</span>
+        <span class="diff-name">Comunicação executiva</span>
+        <span class="diff-rule"></span>
       </div>
+      <p class="diff-desc">Falo a linguagem do C-level e do time técnico, traduzindo complexidade em narrativa de negócio e garantindo alinhamento contínuo entre stakeholders, com clareza, previsibilidade e confiança na execução.</p>
     </div>
 
-    <div class="acc-item fade-up">
-      <button type="button" class="acc-trigger" aria-expanded="false">
-        <div class="acc-trigger-left">
-          <span class="acc-period">06</span>
-          <span class="acc-role">Entrega sob Alta Pressão</span>
-        </div>
-        <div class="acc-trigger-right">
-          <span class="acc-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </button>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <p class="acc-desc">12+ anos em ambientes de alta complexidade. Redes nacionais, múltiplos stakeholders, prazos reais, expectativas altas. Entregar sob pressão é rotina, não exceção.</p>
-        </div>
+    <div class="diff-item">
+      <div class="diff-row">
+        <span class="diff-num">06</span>
+        <span class="diff-name">Execução em ambientes de alta complexidade</span>
+        <span class="diff-rule"></span>
       </div>
+      <p class="diff-desc">12+ anos em ambientes de alta complexidade, com atuação em redes nacionais, múltiplos stakeholders, prazos reais e expectativas elevadas. Entrego sob pressão de forma consistente. Isso é rotina, não exceção.</p>
     </div>
 
   </div>
@@ -2019,6 +2747,7 @@ footer p {
       <div class="edu-col-label">Certificações e Formações Complementares</div>
       <div class="cert-list">
         <div class="cert">PSM I · Scrum.org (2023)</div>
+        <div class="cert">CPA-10 · ANBIMA (2023)</div>
         <div class="cert">Yellow Belt Lean Six Sigma</div>
         <div class="cert">Gerenciamento de Projetos · Voitto</div>
         <div class="cert">Liderança de Produtos Digitais · Canal Valor</div>
@@ -2035,32 +2764,56 @@ footer p {
 <div class="divider"></div>
 
 <!-- CONTATO -->
-<section id="contato" class="bg-alt">
-  <div class="contact-inner">
-    <div class="contact-label fade-up">Contato</div>
-    <h2 class="contact-heading fade-up">Vamos <strong>conversar</strong></h2>
-    <p class="contact-sub fade-up">Quer trocar uma ideia, falar sobre projetos ou simplesmente se conectar? Escolha o canal de sua preferência.</p>
-    <div class="contact-actions fade-up">
-      <a href="https://wa.me/5581996404335" target="_blank" rel="noopener noreferrer" class="c-link">
-        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        WhatsApp
+<section id="contato" class="footer-final">
+  <div class="ff-split">
+  <div class="ff-inner">
+    <div class="contact-label fade-up ff-label">Contato</div>
+    <h2 class="contact-heading fade-up ff-heading">Vamos <strong>conversar</strong></h2>
+    <p class="contact-sub fade-up ff-sub">Se quiser trocar uma ideia ou falar sobre projetos, escolha o canal de sua preferência.</p>
+
+    <div class="ff-index fade-up">
+      <a href="https://wa.me/5581996404335" target="_blank" rel="noopener noreferrer" class="ff-row">
+        <span class="ff-top-line">
+          <span class="ff-idx">01</span>
+          <span class="ff-arr" aria-hidden="true">↗</span>
+        </span>
+        <span class="ff-channel">
+          <svg class="ff-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span class="ff-lab">WhatsApp</span>
+        </span>
       </a>
-      <a href="https://www.linkedin.com/in/jessicamarianos" target="_blank" rel="noopener noreferrer" class="c-link">
-        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
+      <a href="https://www.linkedin.com/in/jessicamarianos" target="_blank" rel="noopener noreferrer" class="ff-row">
+        <span class="ff-top-line">
+          <span class="ff-idx">02</span>
+          <span class="ff-arr" aria-hidden="true">↗</span>
+        </span>
+        <span class="ff-channel">
+          <svg class="ff-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <span class="ff-lab">LinkedIn</span>
+        </span>
       </a>
-      <a href="mailto:jessical.mariano@icloud.com" class="c-link">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        E-mail
+      <a href="mailto:jessical.mariano@icloud.com" class="ff-row">
+        <span class="ff-top-line">
+          <span class="ff-idx">03</span>
+          <span class="ff-arr" aria-hidden="true">↗</span>
+        </span>
+        <span class="ff-channel">
+          <svg class="ff-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span class="ff-lab">E-mail</span>
+        </span>
       </a>
     </div>
-  </div>
-</section>
 
-<footer>
-  <p>© 2026 Jéssica Mariano · Todos os direitos reservados</p>
-  <p>Gerente de Projetos · Caruaru, PE · Brasil</p>
-</footer>
+    <div class="ff-base">
+      <span>© 2026 Jéssica Mariano · Gerente de Projetos</span>
+      <span class="ff-clock" id="ff-clock">—</span>
+    </div>
+  </div><!-- /ff-inner -->
+  <div class="ff-canvas-col">
+    <canvas id="contact-net" aria-hidden="true"></canvas>
+  </div>
+  </div><!-- /ff-split -->
+</section>
 
 <script>
 /* CURSOR */
@@ -2106,7 +2859,7 @@ document.querySelectorAll('a, button').forEach(el => {
     dot.style.opacity = '0.4';
     dotRing.style.width = '42px';
     dotRing.style.height = '42px';
-    dotRing.style.borderColor = 'rgba(0,152,184,0.55)';
+    dotRing.style.borderColor = 'rgba(47,128,208,0.55)';
     dotLabel.textContent = label;
     dotLabel.style.opacity = '1';
   });
@@ -2116,7 +2869,7 @@ document.querySelectorAll('a, button').forEach(el => {
     dot.style.opacity = '0.9';
     dotRing.style.width = '32px';
     dotRing.style.height = '32px';
-    dotRing.style.borderColor = 'rgba(0,152,184,0.3)';
+    dotRing.style.borderColor = 'rgba(47,128,208,0.3)';
     dotLabel.style.opacity = '0';
   });
 });
@@ -2156,11 +2909,354 @@ if (toggle && mobileMenu) {
   });
 }
 
-/* NAV */
+/* NAV — auto-hide ao rolar (rAF-throttled, sem flicker) */
 const nav = document.getElementById('nav');
+let lastScrollY = window.scrollY;
+let navTicking = false;
+
+function updateNav() {
+  const y = Math.max(window.scrollY, 0);
+  nav.classList.toggle('scrolled', y > 40);
+
+  const menuOpen = mobileMenu && mobileMenu.classList.contains('open');
+  if (!menuOpen) {
+    if (y > lastScrollY && y > 120) {
+      nav.classList.add('nav-hidden');     // rolando para baixo → esconde
+    } else if (y < lastScrollY) {
+      nav.classList.remove('nav-hidden');  // rolando para cima → mostra
+    }
+  }
+  if (y <= 40) nav.classList.remove('nav-hidden'); // sempre visível no topo
+
+  lastScrollY = y;
+  navTicking = false;
+}
+
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
+  if (!navTicking) {
+    window.requestAnimationFrame(updateNav);
+    navTicking = true;
+  }
 }, { passive: true });
+
+/* ─── CAMPO INTELIGENTE · rede reativa do Hero (Constelação Viva) ───
+   Confinada à direita: pontos só nascem além da borda do texto, com folga.
+   Como só conectamos pontos ENTRE SI, nada é desenhado sobre o texto. */
+(function () {
+  const hero  = document.getElementById('hero');
+  const inner = hero && hero.querySelector('.hero-inner');
+  const cv    = document.getElementById('hero-net');
+  if (!hero || !inner || !cv) return;
+  if (window.matchMedia('(max-width: 768px)').matches) return;   // desktop only
+
+  const ctx = cv.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const GAP = 32, SAFE = 70, FADE = 110, R = 130, D = 46;
+  let W = 0, H = 0, dpr = 1, dots = [], boundary = 0, t = 0, running = false;
+  const m = { x: -9999, y: -9999, on: false };
+
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const hr = hero.getBoundingClientRect();
+    W = hr.width; H = hr.height;
+    cv.width = W * dpr; cv.height = H * dpr;
+    cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    boundary = (inner.getBoundingClientRect().right - hr.left) + SAFE;
+    build();
+  }
+  function build() {
+    dots = [];
+    for (let y = GAP / 2; y < H; y += GAP) {
+      for (let x = boundary; x < W - 10; x += GAP) {
+        // fade de entrada perto da fronteira (sem corte seco)
+        const edge = Math.min(1, (x - boundary) / FADE);
+        dots.push({ x: x, y: y, edge: edge });
+      }
+    }
+  }
+  function dist(ax, ay, bx, by) { return Math.hypot(ax - bx, ay - by); }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const near = [];
+    for (let i = 0; i < dots.length; i++) {
+      const d = dots[i];
+      const dm = m.on ? dist(d.x, d.y, m.x, m.y) : 9999;
+      const isn = dm < R;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, isn ? 2.4 : 1.3, 0, 7);
+      ctx.fillStyle = isn
+        ? 'rgba(47,128,208,' + ((0.25 + (1 - dm / R) * 0.7) * d.edge) + ')'
+        : 'rgba(38,102,166,' + (0.16 * d.edge) + ')';
+      ctx.fill();
+      if (isn) near.push(d);
+    }
+    for (let a = 0; a < near.length; a++) {
+      for (let b = a + 1; b < near.length; b++) {
+        const dd = dist(near[a].x, near[a].y, near[b].x, near[b].y);
+        if (dd < D) {
+          ctx.beginPath();
+          ctx.moveTo(near[a].x, near[a].y);
+          ctx.lineTo(near[b].x, near[b].y);
+          ctx.strokeStyle = 'rgba(47,128,208,' + ((1 - dd / D) * 0.5 * Math.min(near[a].edge, near[b].edge)) + ')';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+  function loop() {
+    t += 0.016;
+    // pausa quando o Hero saiu da tela (economia de CPU)
+    if (window.scrollY < H) draw();
+    if (running) requestAnimationFrame(loop);
+  }
+
+  hero.addEventListener('mousemove', (e) => {
+    const hr = hero.getBoundingClientRect();
+    m.x = e.clientX - hr.left;
+    m.y = e.clientY - hr.top;
+    m.on = true;
+  });
+  hero.addEventListener('mouseleave', () => { m.on = false; m.x = -9999; m.y = -9999; });
+  window.addEventListener('resize', () => { size(); if (reduce) draw(); }, { passive: true });
+
+  size();
+  if (reduce) { draw(); }          // estático: campo de pontos sem animação
+  else { running = true; requestAnimationFrame(loop); }
+})();
+
+/* CONTATO — rede clara/neutra no lado direito (espelho do hero-net, paleta --bg-3) */
+(function () {
+  const cv = document.getElementById('contact-net');
+  if (!cv) return;
+
+  const ctx = cv.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const GAP = 30, R = 130, D = 52, FADE = 90;
+  let W = 0, H = 0, dpr = 1, dots = [], running = false;
+  const m = { x: -9999, y: -9999, on: false };
+
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const col = cv.parentElement;
+    W = col.offsetWidth || 0;
+    H = col.offsetHeight || 0;
+    if (!W || !H) return;
+    cv.width  = W * dpr; cv.height = H * dpr;
+    cv.style.width  = W + 'px'; cv.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    build();
+  }
+  function build() {
+    dots = [];
+    for (let y = GAP / 2; y < H; y += GAP) {
+      for (let x = GAP / 2; x < W; x += GAP) {
+        const edge = Math.min(1, x / FADE);
+        dots.push({ x, y, edge });
+      }
+    }
+  }
+  function dist(ax, ay, bx, by) { return Math.hypot(ax - bx, ay - by); }
+  function draw() {
+    if (!W || !H) return;
+    ctx.clearRect(0, 0, W, H);
+    const near = [];
+    for (let i = 0; i < dots.length; i++) {
+      const d = dots[i];
+      const dm = m.on ? dist(d.x, d.y, m.x, m.y) : 9999;
+      const isn = dm < R;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, isn ? 2.2 : 1.1, 0, 7);
+      ctx.fillStyle = isn
+        ? 'rgba(203,208,213,' + ((0.3 + (1 - dm / R) * 0.55) * d.edge) + ')'
+        : 'rgba(203,208,213,' + (0.16 * d.edge) + ')';
+      ctx.fill();
+      if (isn) near.push(d);
+    }
+    for (let a = 0; a < near.length; a++) {
+      for (let b = a + 1; b < near.length; b++) {
+        const dd = dist(near[a].x, near[a].y, near[b].x, near[b].y);
+        if (dd < D) {
+          ctx.beginPath();
+          ctx.moveTo(near[a].x, near[a].y);
+          ctx.lineTo(near[b].x, near[b].y);
+          ctx.strokeStyle = 'rgba(203,208,213,' + ((1 - dd / D) * 0.38 * Math.min(near[a].edge, near[b].edge)) + ')';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+  function loop() { draw(); if (running) requestAnimationFrame(loop); }
+
+  const col = cv.parentElement;
+  col.addEventListener('mousemove', function(e) {
+    const r = col.getBoundingClientRect();
+    m.x = e.clientX - r.left; m.y = e.clientY - r.top; m.on = true;
+  });
+  col.addEventListener('mouseleave', function() { m.on = false; m.x = -9999; m.y = -9999; });
+  window.addEventListener('resize', function() { size(); if (reduce) draw(); }, { passive: true });
+
+  function init() {
+    size();
+    if (!W || !H) return;
+    if (reduce) { draw(); }
+    else if (!running) { running = true; requestAnimationFrame(loop); }
+  }
+  /* tenta na load; se já passou, executa na próxima animação para garantir layout */
+  if (document.readyState === 'complete') {
+    requestAnimationFrame(function() { requestAnimationFrame(init); });
+  } else {
+    window.addEventListener('load', function() {
+      requestAnimationFrame(function() { requestAnimationFrame(init); });
+    });
+  }
+})();
+
+/* SOBRE — espinha conecta exatamente do 1º ao último nó (sem sobra) */
+(function () {
+  const cards = document.querySelector('.about-cards');
+  if (!cards) return;
+  const items = cards.querySelectorAll('.acard');
+  if (items.length < 2) return;
+  const NODE = 2 + 5.5; // top do nó (2px) + metade da altura (5.5px)
+  function sync() {
+    const first = items[0], last = items[items.length - 1];
+    const top = first.offsetTop + NODE;
+    const h = (last.offsetTop + last.offsetHeight) - top;   /* linha vai até o FIM do último card */
+    cards.style.setProperty('--spine-top', top + 'px');
+    cards.style.setProperty('--spine-h', h + 'px');
+  }
+  sync();
+  window.addEventListener('resize', sync, { passive: true });
+  window.addEventListener('load', sync);
+})();
+
+/* TRAJETÓRIA — destaca métricas nos bullets (envolve em <span>, sem alterar o texto) */
+(function () {
+  const bullets = document.querySelectorAll('#exp-acc .exp-bullets li');
+  if (!bullets.length) return;
+  const re = /(R\$\s?\d[\d.,]*(?:\s?(?:bilhões|bilhão|milhões|milhão|mil))?)|([+\-−]?\d[\d.,]*\s?%)|(\d+\s?h\+?(?![A-Za-zÀ-ú]))|(\d[\d.,]*)/g;
+  bullets.forEach((li) => {
+    const walker = document.createTreeWalker(li, NodeFilter.SHOW_TEXT, null);
+    const texts = [];
+    while (walker.nextNode()) texts.push(walker.currentNode);
+    texts.forEach((tn) => {
+      const txt = tn.nodeValue;
+      re.lastIndex = 0;
+      if (!re.test(txt)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while ((m = re.exec(txt))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(txt.slice(last, m.index)));
+        const s = document.createElement('span');
+        s.className = 'mtr';
+        s.textContent = m[0];
+        frag.appendChild(s);
+        last = m.index + m[0].length;
+      }
+      if (last < txt.length) frag.appendChild(document.createTextNode(txt.slice(last)));
+      tn.parentNode.replaceChild(frag, tn);
+    });
+  });
+})();
+
+/* TRAJETÓRIA — espinha conecta exatamente do 1º ao último nó (recalcula ao abrir/fechar) */
+(function () {
+  const list = document.getElementById('exp-acc');
+  if (!list) return;
+  const items = Array.prototype.slice.call(list.children).filter(el => el.classList.contains('acc-item'));
+  if (items.length < 2) return;
+  const NODE = 1.9 * 16 + 5.5; // top do nó (1.9rem) + metade da altura
+  function sync() {
+    const first = items[0], last = items[items.length - 1];
+    const top = first.offsetTop + NODE;
+    const h = (last.offsetTop + NODE) - top;
+    list.style.setProperty('--exp-top', top + 'px');
+    list.style.setProperty('--exp-h', h + 'px');
+  }
+  sync();
+  window.addEventListener('load', sync);
+  window.addEventListener('resize', sync, { passive: true });
+  list.addEventListener('transitionend', sync);
+  list.addEventListener('click', () => { setTimeout(sync, 380); });
+})();
+
+/* MAPA DE ENTREGAS — lê o conteúdo do accordion (#proj-acc) e ativa a interação */
+(function () {
+  const map = document.getElementById('proj-map');
+  const acc = document.getElementById('proj-acc');
+  const panel = document.getElementById('pm-panel');
+  if (!map || !acc || !panel) return;
+  const items = acc.querySelectorAll('.acc-item');
+  // métrica-herói por case (derivada dos números aprovados; texto não é alterado)
+  const meta = {
+    1: { m: '9',   s: 'ativos', ml: 'Projetos cobertos · 100% QA' },
+    2: { m: '60',  s: '+',      ml: 'Unidades padronizadas' },
+    3: { m: '115', s: 'un',     ml: '8 sistemas → 1 plataforma' },
+    4: { m: '100', s: 'h+',     ml: 'Economia mensal' },
+    5: { m: '30',  s: '%+',     ml: 'do New MRR mensal' },
+    6: { m: '+31', s: '%',      ml: 'Receita · −22% custos · −18% combustível' }
+  };
+  function dataFor(k) {
+    const it = items[k - 1];
+    return {
+      ix: it.querySelector('.acc-period').textContent,
+      ti: it.querySelector('.acc-role').textContent,
+      co: it.querySelector('.acc-company').textContent,
+      de: it.querySelector('.acc-desc').textContent,
+      m: meta[k].m, s: meta[k].s, ml: meta[k].ml
+    };
+  }
+  function render(k) {
+    const d = dataFor(k);
+    panel.innerHTML =
+      '<div class="pm-metric"></div>' +
+      '<div class="pm-ml"></div><div class="pm-ti"></div>' +
+      '<div class="pm-co"></div><div class="pm-de"></div>';
+    panel.querySelector('.pm-metric').innerHTML = d.m + '<span class="s">' + d.s + '</span>';
+    panel.querySelector('.pm-ml').textContent = d.ml;
+    panel.querySelector('.pm-ti').textContent = d.ti;
+    panel.querySelector('.pm-co').textContent = d.co;
+    panel.querySelector('.pm-de').textContent = d.de;
+    map.querySelectorAll('.pm-stat').forEach(el => el.classList.toggle('sel', el.dataset.case === String(k)));
+  }
+  function pingPanel() {
+    panel.classList.remove('pinging');
+    panel.offsetHeight; /* reflow para reiniciar a animação */
+    panel.classList.add('pinging');
+    panel.addEventListener('animationend', () => panel.classList.remove('pinging'), { once: true });
+  }
+  map.querySelectorAll('.pm-stat').forEach(el => {
+    el.addEventListener('mouseenter', () => render(el.dataset.case));
+    el.addEventListener('focus',      () => render(el.dataset.case));
+    el.addEventListener('click', () => {
+      render(el.dataset.case);
+      pingPanel();
+    });
+  });
+  render(3);  /* default: 115 · BI nacional */
+  /* count-up dos resultados (ganhando vida) */
+  function countUp() {
+    map.querySelectorAll('.pm-mn').forEach(function (el) {
+      const t = +el.dataset.count, pre = el.dataset.pre || '', st = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - st) / 1000, 1);
+        el.textContent = pre + Math.round((1 - Math.pow(1 - p, 4)) * t);
+        if (p < 1) requestAnimationFrame(tick);
+      })(st);
+    });
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    map.querySelectorAll('.pm-mn').forEach(el => el.textContent = (el.dataset.pre || '') + el.dataset.count);
+  } else {
+    window.addEventListener('load', () => setTimeout(countUp, 400));
+    if (document.readyState === 'complete') setTimeout(countUp, 400);
+  }
+})();
 
 /* SMOOTH SCROLL */
 function scrollToSection(id) {
@@ -2248,8 +3344,9 @@ document.querySelectorAll('.acc-trigger').forEach(trigger => {
   const closeBtn = document.getElementById('mobile-notice-close');
 
   if (notice && closeBtn) {
-    if (localStorage.getItem('notice-dismissed')) {
-      /* Já foi fechado em visita anterior — não exibe */
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile || localStorage.getItem('notice-dismissed-v2')) {
+      /* Só aparece no mobile; e não reexibe se já foi fechado nesta versão */
       notice.style.display = 'none';
     } else {
       /* Exibe com entrada suave após 800ms */
@@ -2258,58 +3355,78 @@ document.querySelectorAll('.acc-trigger').forEach(trigger => {
     closeBtn.addEventListener('click', () => {
       notice.classList.remove('visible');
       setTimeout(() => { notice.style.display = 'none'; }, 360);
-      localStorage.setItem('notice-dismissed', '1');
+      localStorage.setItem('notice-dismissed-v2', '1');
     });
   }
 })();
 
 
+/* ─── BIG NUMBERS · conceito "SIGNAL" ───
+   Cada métrica calibra na cor fria, conta de 0 ao valor e trava
+   na cor de marca com um micro-pop. Um scan beam cruza a base uma
+   vez (mesmo motivo do header). Dispara no scroll-into-view. */
 (function () {
-  function easeOutQuart(t) {
-    return 1 - Math.pow(1 - t, 4);
+  const metricsBlock = document.querySelector('.hero-metrics');
+  if (!metricsBlock) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items  = Array.from(metricsBlock.querySelectorAll('.hm-item'));
+  const base   = metricsBlock.querySelector('.hm-base');
+  const scan   = metricsBlock.querySelector('.hm-scan');
+
+  const ITEM_DELAY = 200;   /* atraso entre métricas */
+  const COUNT_DUR  = 950;   /* duração da contagem */
+  const LABEL_AT   = 650;   /* rótulo entra após o número */
+
+  function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+  function lock(valEl, numEl) {
+    valEl.classList.add('locked');     /* cor de marca / herói líquido */
+    numEl.classList.add('pop');        /* micro-pop ao confirmar */
   }
 
-  function animateCount(el, target, suffix, duration) {
+  function countTo(numEl, valEl, target) {
+    if (reduce) { numEl.textContent = target; lock(valEl, numEl); return; }
     const start = performance.now();
-    function tick(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const current = Math.round(easeOutQuart(progress) * target);
-      el.textContent = current + suffix;
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
+    (function tick(now) {
+      const p = Math.min((now - start) / COUNT_DUR, 1);
+      numEl.textContent = Math.round(easeOutQuart(p) * target);
+      if (p < 1) requestAnimationFrame(tick);
+      else lock(valEl, numEl);
+    })(start);
   }
 
-  function runSequence() {
-    const metricsBlock = document.querySelector('.hero-metrics');
-    if (!metricsBlock) return;
-    const items = Array.from(metricsBlock.querySelectorAll('.hm-item'));
-    const ITEM_DELAY  = 220;
-    const ENTER_DUR   = 700;
-    const COUNT_DUR   = 900;
-    const LABEL_DELAY = 200;
-
+  function run() {
     items.forEach((item, i) => {
-      const valEl   = item.querySelector('.hm-value');
-      const labelEl = item.querySelector('.hm-label');
-      const target  = parseInt(valEl.dataset.target);
-      const suffix  = valEl.dataset.suffix || '';
-      const entryAt = i * ITEM_DELAY;
+      const valEl  = item.querySelector('.hm-value');
+      const numEl  = item.querySelector('.hm-num');
+      const labEl  = item.querySelector('.hm-label');
+      const target = parseInt(valEl.dataset.target, 10);
+      const at     = i * ITEM_DELAY;
 
       setTimeout(() => {
         valEl.classList.add('visible');
-        animateCount(valEl, target, suffix, COUNT_DUR);
-      }, entryAt);
-
-      setTimeout(() => {
-        labelEl.classList.add('visible');
-      }, entryAt + ENTER_DUR - 100 + LABEL_DELAY);
+        countTo(numEl, valEl, target);
+      }, at);
+      setTimeout(() => labEl.classList.add('visible'), at + LABEL_AT);
     });
+
+    /* scan beam cruza a base e deixa o filete fixo */
+    setTimeout(() => {
+      if (!reduce && scan) scan.classList.add('go');
+      if (base) base.classList.add('show');
+    }, 120);
   }
 
-  /* Dispara após o hero terminar de entrar (1300ms da animação CSS + buffer) */
-  window.addEventListener('load', () => setTimeout(runSequence, 1700));
+  /* A seção fica no hero (visível no carregamento). Dispara após o hero
+     terminar de entrar (animação CSS ~1.3s + buffer). Se já tiver sido
+     rolada para fora, ainda assim roda — é a primeira dobra. */
+  let started = false;
+  function start() { if (started) return; started = true; run(); }
+
+  window.addEventListener('load', () => setTimeout(start, 1700));
+  /* Fallback: se o load já ocorreu, garante o disparo */
+  if (document.readyState === 'complete') setTimeout(start, 1700);
 })();
 
 /* FADE-UP AO SCROLL */
@@ -2326,6 +3443,41 @@ document.querySelectorAll('.fade-up').forEach((el, i) => {
   el.dataset.delay = (i % 4) * 55;
   io.observe(el);
 });
+
+/* ─── DIFERENCIAIS · cascata de revelação ─── */
+(function () {
+  const list = document.getElementById('diff-list');
+  if (!list) return;
+  const items = Array.from(list.querySelectorAll('.diff-item'));
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const diffIO = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      items.forEach((item, i) => {
+        const delay = reduce ? 0 : 130 * i;
+        setTimeout(() => item.classList.add('in'), delay);
+      });
+      obs.disconnect();
+    });
+  }, { threshold: 0.2 });
+
+  diffIO.observe(list);
+})();
+
+/* ─── RODAPÉ · relógio local ─── */
+(function () {
+  const el = document.getElementById('ff-clock');
+  if (!el) return;
+  function tick() {
+    const t = new Intl.DateTimeFormat('pt-BR', {
+      timeZone: 'America/Recife', hour: '2-digit', minute: '2-digit', hour12: false
+    }).format(new Date());
+    el.textContent = 'Horário local · ' + t + ' BRT';
+  }
+  tick();
+  setInterval(tick, 10000);
+})();
 </script>
 
 </body>
