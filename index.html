@@ -1937,8 +1937,9 @@ img, svg, canvas, video { max-width: 100%; }
   margin-top: -0.1rem;
 }
 #mobile-notice-close:hover { color: #ffffff; }
-/* Aviso é exclusivo do mobile (a mensagem recomenda o desktop) */
-@media (min-width: 769px) { #mobile-notice { display: none; } }
+/* Aviso aparece em qualquer dispositivo touch (mobile + iPad/tablets);
+   escondido só no desktop com mouse (hover) */
+@media (hover: hover) and (pointer: fine) { #mobile-notice { display: none; } }
 
 /* ─── DIFERENCIAIS · revelação editorial ─── */
 .diff-dark {
@@ -3383,23 +3384,22 @@ document.querySelectorAll('.acc-trigger').forEach(trigger => {
     e.preventDefault();
   });
 
-  /* Aviso desktop — persistente, fecha manualmente, persiste entre visitas */
+  /* Aviso de experiência — touch only (mobile + iPad/tablets), reaparece a cada visita */
   const notice = document.getElementById('mobile-notice');
   const closeBtn = document.getElementById('mobile-notice-close');
 
   if (notice && closeBtn) {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (!isMobile || localStorage.getItem('notice-dismissed-v2')) {
-      /* Só aparece no mobile; e não reexibe se já foi fechado nesta versão */
+    /* Dispositivo touch (mobile + iPad/tablets) → mostra SEMPRE, a cada visita */
+    const isTouch = window.matchMedia('(hover: none)').matches;
+    if (!isTouch) {
       notice.style.display = 'none';
     } else {
-      /* Exibe com entrada suave após 800ms */
       setTimeout(() => notice.classList.add('visible'), 800);
     }
+    /* Fechar só dispensa nesta visita — não persiste (reaparece no próximo acesso) */
     closeBtn.addEventListener('click', () => {
       notice.classList.remove('visible');
       setTimeout(() => { notice.style.display = 'none'; }, 360);
-      localStorage.setItem('notice-dismissed-v2', '1');
     });
   }
 })();
