@@ -1682,14 +1682,8 @@ img, svg, canvas, video { max-width: 100%; }
     padding-left: 0;
     padding-right: 0;
   }
-  /* FIX #1 — tags visíveis no mobile, reorganizadas abaixo do título */
-  .acc-tags-inline {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    margin-top: 0.4rem;
-    order: 3; /* aparece após o role */
-  }
+  /* Mobile: oculta as mini-tags nos accordions para o título ocupar a largura toda */
+  .acc-tags-inline { display: none; }
   .acc-trigger-left {
     flex-direction: column;
     flex-wrap: wrap;
@@ -1760,8 +1754,10 @@ img, svg, canvas, video { max-width: 100%; }
   .edu-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .edu-row:nth-child(2), .edu-row:nth-child(3), .edu-row:nth-child(4) { margin-left: 0; }
   .edu-degree { font-size: 0.88rem; line-height: 1.4; }
-  .edu-row { padding: 1.1rem 0; }
-  .cert-list { grid-template-columns: 1fr; gap: 1px; }
+  .edu-row { padding: 1.1rem 1.2rem; }
+  /* nó da timeline não faz sentido sem o "staircase" no mobile → remove o ponto órfão */
+  .edu-row:first-child::before { display: none; }
+  .cert-list { grid-template-columns: 1fr; gap: 0.5rem; }
   .cert { border-right: none; font-size: 0.8rem; padding: 0.75rem 0.9rem; }
 
   /* ── Contato ── */
@@ -2173,6 +2169,30 @@ img, svg, canvas, video { max-width: 100%; }
   color: #4f6175;
 }
 .ff-clock { color: #5999d9 !important; }
+
+/* ─── CORREÇÃO MOBILE · estas regras precisam vir DEPOIS das bases .ff-* ───
+   (senão a cascata as anula e o Contato fica em 3 colunas estourando) */
+@media (max-width: 768px) {
+  /* Canais de contato em coluna única — corrige o overflow horizontal */
+  .ff-index { grid-template-columns: 1fr; }
+  .ff-row {
+    border-right: none;
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  }
+  .ff-row:last-child { border-bottom: none; }
+  .ff-base { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+
+  /* Diferenciais: descrições SEMPRE visíveis (sem hover no touch) e título sem corte */
+  .diff-name { font-size: 1.1rem; flex-shrink: 1; }
+  .diff-rule { display: none; }
+  .diff-desc {
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
+    margin-top: 0.6rem;
+    margin-left: calc(26px + 1.25rem);
+  }
+}
 
 </style>
 </head>
