@@ -2194,6 +2194,25 @@ img, svg, canvas, video { max-width: 100%; }
   }
 }
 
+/* ═══════════════════════════════════════════
+   DISPOSITIVOS TOUCH (iPad, tablets, celulares) — sem hover
+   Mantém o layout/animações do desktop, mas corrige o que depende de mouse.
+═══════════════════════════════════════════ */
+@media (hover: none) {
+  /* cursor customizado não faz sentido no touch (ficava preso no canto) */
+  #dot, #dot-ring, #dot-label { display: none; }
+
+  /* Diferenciais: descrições sempre visíveis (não há hover para revelar) */
+  .diff-desc {
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
+    margin-top: 0.7rem;
+  }
+  /* sem hover, a régua animada não agrega — esconde p/ leitura limpa */
+  .diff-item:hover { transform: none; background: transparent; }
+}
+
 </style>
 </head>
 <body>
