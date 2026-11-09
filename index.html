@@ -34,6 +34,114 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ═══ PRÉ-CARREGAMENTO 2026-11 · O Nó se desenha e fecha sobre o site ═══
+     Mesma lógica do preload da home MWM (inc/preloader-home.php do tema mwm):
+       0 a 1,9 s   anéis do Nó se desenham, núcleo acende, nome e cargo sobem, contagem 0 a 100%;
+       1,9 a 2,8 s o painel escuro fecha em círculo até o núcleo e o site aparece por fora.
+     - Uma vez por visita (sessionStorage "jmPreloadVisto"); aba nova, vê de novo.
+     - Quem pediu "reduzir movimento" no aparelho não vê.
+     - Não trava a rolagem nem segura conteúdo: só cobre a tela.
+     - Trava de 4 s no JS e no CSS: se algo falhar, some sozinho.
+     - A entrada do hero espera o fim (jmDepoisDoPreload). -->
+<script>
+(function () {
+  var h = document.documentElement, fila = [];
+  /* roda fn quando a tela estiver livre (na hora, se não houver pré-carregamento) */
+  window.jmDepoisDoPreload = function (fn) { if (h.classList.contains('pl-ativo')) fila.push(fn); else fn(); };
+  window.jmFimDoPreload = function () {
+    if (!h.classList.contains('pl-ativo')) return;
+    h.classList.remove('pl-ativo');
+    fila.splice(0).forEach(function (fn) { try { fn(); } catch (e) {} });
+  };
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.sessionStorage.getItem('jmPreloadVisto')) return;
+    window.sessionStorage.setItem('jmPreloadVisto', '1');
+    h.classList.add('pl-ativo');
+    window.setTimeout(window.jmFimDoPreload, 4000);
+  } catch (e) {}
+})();
+</script>
+<style id="pl-css">
+/* capa da primeira pintura, até o HTML do pré-carregamento chegar */
+html.pl-ativo::before { content: ''; position: fixed; inset: 0; z-index: 2147483646; background: #0b0f14; animation: pl-trava 0s linear 4s forwards; }
+#pl { position: fixed; inset: 0; z-index: 2147483647; display: none; }
+html.pl-ativo #pl, #pl.saindo { display: block; }
+html.pl-ativo #pl { animation: pl-trava 0s linear 4s forwards; }
+@keyframes pl-trava { to { visibility: hidden; pointer-events: none; } }
+
+.pl-painel {
+  position: absolute; inset: 0;
+  background: #0b0f14;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  clip-path: circle(150% at var(--cx, 50%) var(--cy, 50%));
+  transition: clip-path 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+}
+/* textura: a rede de pontos do hero, acesa só no centro */
+.pl-painel::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(89,153,217,0.22) 1px, transparent 1.3px);
+  background-size: 32px 32px;
+  -webkit-mask: radial-gradient(circle at 50% 46%, #000 0, transparent 46%);
+          mask: radial-gradient(circle at 50% 46%, #000 0, transparent 46%);
+  opacity: 0; animation: pl-surge 1.2s ease 0.1s forwards;
+}
+#pl.saindo .pl-painel { clip-path: circle(0% at var(--cx, 50%) var(--cy, 50%)); }
+
+.pl-no { position: relative; width: clamp(72px, 7vw, 96px); height: auto; overflow: visible; margin-bottom: 1.75rem; }
+.pl-no circle { transform-box: fill-box; transform-origin: center; }
+.pl-a1, .pl-a2 { stroke-dasharray: 1; stroke-dashoffset: 1; transform: rotate(-90deg); }
+.pl-a1 { animation: pl-desenha 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
+.pl-a2 { animation: pl-desenha 1s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards; }
+.pl-nucleo { transform: scale(0); animation: pl-acende 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s forwards; }
+.pl-ping { opacity: 0; animation: pl-ping 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards; }
+@keyframes pl-desenha { to { stroke-dashoffset: 0; } }
+@keyframes pl-acende { to { transform: scale(1); } }
+@keyframes pl-ping { 0% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0; transform: scale(5); } }
+@keyframes pl-surge { to { opacity: 1; } }
+
+.pl-nome {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  font-weight: 200; letter-spacing: -0.04em; line-height: 1.05;
+  color: #ffffff; display: flex; gap: 0.28em;
+}
+.pl-nome strong { font-weight: 600; }
+.pl-l { display: block; overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.pl-l > span { display: block; transform: translateY(105%); animation: pl-sobe 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
+.pl-l + .pl-l > span { animation-delay: 0.6s; }
+@keyframes pl-sobe { to { transform: none; } }
+
+.pl-cargo {
+  margin-top: 0.9rem;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase; color: #8a929b;
+  display: flex; align-items: center; gap: 0.6rem;
+  opacity: 0; animation: pl-surge 0.8s ease 0.85s forwards;
+}
+.pl-cargo::before { content: ''; width: 22px; height: 1px; background: #2666a6; }
+
+.pl-carga {
+  position: absolute; left: 50%; bottom: clamp(28px, 7vh, 64px); transform: translateX(-50%);
+  display: flex; align-items: center; gap: 14px;
+}
+.pl-barra { width: clamp(120px, 12vw, 180px); height: 1px; background: rgba(255,255,255,0.12); overflow: hidden; }
+.pl-barra span { display: block; height: 100%; background: linear-gradient(90deg, #2666a6, #5999d9); transform: scaleX(0); transform-origin: left; }
+.pl-pct { min-width: 4ch; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: #8a929b; font-variant-numeric: tabular-nums; }
+
+/* saída: textos somem rápido, o Nó encolhe junto com o círculo */
+.pl-nome, .pl-cargo, .pl-carga { transition: opacity 0.35s ease; }
+#pl.saindo .pl-nome, #pl.saindo .pl-carga { opacity: 0; }
+#pl.saindo .pl-cargo { animation: pl-some 0.35s ease forwards; }   /* o cargo já tem animação de entrada; a transição não passaria por cima */
+@keyframes pl-some { from { opacity: 1; } to { opacity: 0; } }
+.pl-no { transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1); }
+#pl.saindo .pl-no { transform: scale(0.6); }
+
+@media (prefers-reduced-motion: reduce) {
+  html.pl-ativo::before, html.pl-ativo #pl { display: none; }
+}
+</style>
 <style>
 
 /* ─────────────────────────────────────────
@@ -2290,9 +2398,181 @@ img, svg, canvas, video { max-width: 100%; }
   .hero-foto-wrap { display: flex; }
 }
 
+/* ═══════════════════════════════════════════
+   MOVIMENTO 2026-11 · camada de animações modernas
+   Mesmos tokens (azul primária, --ease-out, raios). Tudo neste bloco
+   e no bloco JS de mesmo nome; para voltar ao anterior, basta apagar os dois
+   (cópia: "index - antes das animações 2026-11-09.html").
+═══════════════════════════════════════════ */
+
+/* 1 · Nome do hero: cada linha sobe de trás de uma máscara, saindo do desfoque */
+.hero-name { opacity: 1; transform: none; animation: none; }
+.hero-name .hl {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;    /* folga para o "ç" e o "J" não serem cortados pela máscara */
+  margin-bottom: -0.14em;
+}
+.hl-in {
+  display: block;            /* block, não inline-block: inline-block somava espaço de descendente e o nome crescia 13px */
+  transform: translateY(105%);
+  filter: blur(10px);
+  opacity: 0;
+  animation: hl-sobe 1.15s var(--ease-out) 0.35s forwards;
+}
+.hero-name strong .hl-in { animation-delay: 0.5s; }
+@keyframes hl-sobe {
+  60%  { opacity: 1; }
+  to   { transform: none; filter: blur(0); opacity: 1; }
+}
+
+/* 2 · Revelação PRESA À ROLAGEM: o quanto o bloco aparece depende de quanto ele já entrou na tela.
+   O JS calcula --sr-o (opacidade), --sr-y (deslocamento) e --sr-b (desfoque dos títulos) a cada quadro,
+   com amortecimento, então rolar devagar revela devagar e voltar a rolar volta junto.
+   Usa a propriedade translate (não transform) para não brigar com o hover dos cartões.
+   Sem a classe sr-on (menos movimento ou JS desligado) vale o comportamento antigo. */
+html.sr-on .fade-up,
+html.sr-on .diff-item {
+  opacity: var(--sr-o, 0);
+  translate: 0 var(--sr-y, 34px);
+}
+html.sr-on .fade-up:not(.co-mod) { transform: none; transition: none; }
+html.sr-on .co-mod:not(:hover) { transform: none; }      /* o hover do cartão de stack continua subindo */
+html.sr-on .diff-item { transform: none; animation: none; }
+html.sr-on .s-heading.fade-up,
+html.sr-on .contact-heading.fade-up { filter: blur(var(--sr-b, 8px)); }
+
+/* o texto do hero desce mais devagar que a página: corta na borda do hero para não invadir o "Sobre" */
+html.sr-on #hero { overflow: clip; }
+
+/* 2b · Pausa a entrada do hero enquanto o pré-carregamento cobre a tela */
+html.pl-ativo .hl-in,
+html.pl-ativo .hero-position,
+html.pl-ativo .hero-statement,
+html.pl-ativo .hero-actions,
+html.pl-ativo .hero-metrics { animation-play-state: paused; }
+
+/* 3 · Etiqueta de seção: o filete azul se desenha e o texto entra em seguida */
+.s-label.mv::before { transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--ease-out); }
+.s-label.mv { transition: color 0.6s var(--ease) 0.25s; }
+.s-label.mv:not(.in) { color: transparent; }   /* ao entrar, volta à cor própria (azul ou o azul-soft do bloco escuro) */
+.s-label.mv.in::before { transform: scaleX(1); }
+
+/* 4 · Progresso de leitura no filete do menu (o raio continua passando por cima) */
+.nav-progress {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #2666a6, #5999d9);
+  transform: scaleX(var(--prog, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* 5 · Foto: abre em íris, arco azul gira devagar no anel e inclina com o mouse */
+.hero-foto-anel.iris-play { animation: foto-iris 1.3s var(--ease-out) forwards; }
+@keyframes foto-iris {
+  from { opacity: 0; clip-path: circle(0% at 50% 50%); filter: blur(12px); }
+  to   { opacity: 1; clip-path: circle(75% at 50% 50%); filter: blur(0); }
+}
+.hero-foto-anel {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.8s var(--ease-out);
+}
+.foto-arco {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  padding: 1.5px;            /* mesma espessura do anel fino */
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(89,153,217,0.15) 70%, #5999d9 88%, #2f80d0 92%, transparent 93%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  filter: drop-shadow(0 0 6px rgba(47,128,208,0.6));
+  animation: arco-gira 7s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+@keyframes arco-gira { to { transform: rotate(1turn); } }
+
+/* 5b · Foto também em telas menores que 1400 px (celular, tablet, janela estreita):
+   sai da coluna da direita e entra em círculo menor ACIMA do nome, alinhada à esquerda.
+   Mesmo anel, mesmo arco girando e mesma abertura em íris. */
+@media (max-width: 1399px) {
+  .hero-foto-wrap {
+    display: flex;
+    order: -1;                       /* #hero é coluna flex: a foto vai para antes do texto */
+    position: relative;
+    left: auto; top: auto;
+    width: auto;
+    transform: none;
+    justify-content: flex-start;
+    margin: 1.75rem 0 1.9rem 10px;   /* em cima: respiro do menu; 10px = o anel passa da foto e não encosta na borda */
+  }
+  .hero-foto-anel,
+  .hero-foto { width: clamp(112px, 26vw, 168px); height: clamp(112px, 26vw, 168px); }
+  .hero-foto-anel::before { inset: -20px; }
+  .hero-foto-anel::after,
+  .foto-arco { inset: -7px; }
+  .hero-foto { box-shadow: 0 10px 28px rgba(0,0,0,0.28); }
+}
+
+/* 6 · Botões magnéticos (só com mouse): o JS move; aqui só a suavidade */
+@media (hover: hover) and (pointer: fine) {
+  .btn-fill, .btn-outline, .nav-contact {
+    transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease),
+                transform 0.45s var(--ease-out);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hl-in { filter: none; }
+  .foto-arco { animation: none; }
+  .hero-foto-anel { transform: none; }
+}
+
 </style>
 </head>
 <body>
+<!-- PRÉ-CARREGAMENTO 2026-11 (explicação no <head>, bloco "PRÉ-CARREGAMENTO 2026-11") -->
+<div id="pl" aria-hidden="true">
+  <div class="pl-painel">
+    <svg class="pl-no" viewBox="0 0 64 64" fill="none">
+      <circle class="pl-a1" cx="32" cy="32" r="26" stroke="#6fa8dc" stroke-width="1.2" opacity=".3" pathLength="1"/>
+      <circle class="pl-a2" cx="32" cy="32" r="16" stroke="#6fa8dc" stroke-width="1.6" opacity=".6" pathLength="1"/>
+      <circle class="pl-ping" cx="32" cy="32" r="6" stroke="#5999d9" stroke-width="0.6"/>
+      <circle class="pl-nucleo" cx="32" cy="32" r="6" fill="#2f80d0"/>
+    </svg>
+    <div class="pl-nome"><span class="pl-l"><span>Jéssica</span></span><strong class="pl-l"><span>Mariano</span></strong></div>
+    <div class="pl-cargo">Gerente de Projetos</div>
+    <div class="pl-carga"><div class="pl-barra"><span></span></div><p class="pl-pct">0%</p></div>
+  </div>
+</div>
+<script>
+(function () {
+  var h = document.documentElement, el = document.getElementById('pl');
+  if (!el) return;
+  if (!h.classList.contains('pl-ativo')) { el.parentNode.removeChild(el); return; }
+  var barra = el.querySelector('.pl-barra span'), pct = el.querySelector('.pl-pct');
+  var TOTAL = 1800, inicio = performance.now();
+  (function contar(agora) {
+    var t = Math.min((agora - inicio) / TOTAL, 1), v = 1 - Math.pow(1 - t, 3);
+    pct.textContent = Math.round(v * 100) + '%';
+    barra.style.transform = 'scaleX(' + v + ')';
+    if (t < 1) requestAnimationFrame(contar);
+  })(inicio);
+  setTimeout(function () {
+    /* o círculo fecha exatamente no núcleo do Nó */
+    var r = el.querySelector('.pl-no').getBoundingClientRect();
+    el.style.setProperty('--cx', (r.left + r.width / 2) + 'px');
+    el.style.setProperty('--cy', (r.top + r.height / 2) + 'px');
+    el.classList.add('saindo');
+    window.jmFimDoPreload();          /* o hero começa a entrar enquanto o círculo fecha */
+  }, 1900);
+  setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 2850);
+})();
+</script>
 <div id="dot"></div>
 <div id="dot-ring"></div>
 <div id="dot-label"></div>
@@ -2346,8 +2626,8 @@ img, svg, canvas, video { max-width: 100%; }
   <canvas id="hero-net" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <h1 class="hero-name">
-      Jéssica<br>
-      <strong>Mariano</strong>
+      <span class="hl"><span class="hl-in">Jéssica</span></span>
+      <strong class="hl"><span class="hl-in">Mariano</span></strong>
     </h1>
     <p class="hero-statement">
       Sou gerente de projetos, mas <strong>meu trabalho vai muito além de cronogramas e cerimônias</strong>.<br><br>
@@ -2380,7 +2660,8 @@ img, svg, canvas, video { max-width: 100%; }
   </div>
   <div class="hero-foto-wrap">
     <div class="hero-foto-anel">
-      <img src="perfil.jpg" alt="Jéssica Mariano" class="foto-reveal hero-foto" loading="eager" draggable="false">
+      <span class="foto-arco" aria-hidden="true"></span>
+      <img src="perfil-2026-11.jpg" alt="Jéssica Mariano" class="foto-reveal hero-foto" loading="eager" draggable="false">
     </div>
   </div>
 </section>
@@ -3116,6 +3397,14 @@ window.addEventListener('scroll', () => {
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
+    /* [2026-11] a foto agora se move com a rolagem: relê a posição a cada quadro para as linhas acompanharem */
+    const fotoAgora = document.querySelector('.hero-foto');
+    if (fotoAgora && fotoAgora.offsetParent) {
+      const hr = hero.getBoundingClientRect(), fr = fotoAgora.getBoundingClientRect();
+      photo.x = (fr.left + fr.width / 2) - hr.left;
+      photo.y = (fr.top + fr.height / 2) - hr.top;
+    }
+
     /* linhas de conexão: rede → borda da foto */
     if (photo.r > 0) {
       for (let i = 0; i < dots.length; i++) {
@@ -3514,7 +3803,7 @@ document.querySelectorAll('.acc-trigger').forEach(trigger => {
     if (!isTouch) {
       notice.style.display = 'none';
     } else {
-      setTimeout(() => notice.classList.add('visible'), 800);
+      window.jmDepoisDoPreload(() => setTimeout(() => notice.classList.add('visible'), 800));
     }
     /* Fechar só dispensa nesta visita — não persiste (reaparece no próximo acesso) */
     closeBtn.addEventListener('click', () => {
@@ -3588,9 +3877,11 @@ document.querySelectorAll('.acc-trigger').forEach(trigger => {
   let started = false;
   function start() { if (started) return; started = true; run(); }
 
-  window.addEventListener('load', () => setTimeout(start, 1700));
+  /* [2026-11] conta a partir do fim do pré-carregamento (sem ele, é na hora) */
+  const agendar = () => window.jmDepoisDoPreload(() => setTimeout(start, 1700));
+  window.addEventListener('load', agendar);
   /* Fallback: se o load já ocorreu, garante o disparo */
-  if (document.readyState === 'complete') setTimeout(start, 1700);
+  if (document.readyState === 'complete') agendar();
 })();
 
 /* FADE-UP AO SCROLL */
@@ -3648,10 +3939,147 @@ document.querySelectorAll('.fade-up').forEach((el, i) => {
   var foto = document.querySelector('.hero-foto-anel');
   if (!foto) return;
   function trigger() {
-    setTimeout(function () { foto.classList.add('iris-play'); }, 200);
+    /* [2026-11] espera o pré-carregamento sair da frente */
+    window.jmDepoisDoPreload(function () {
+      setTimeout(function () { foto.classList.add('iris-play'); }, 200);
+    });
   }
   if (document.readyState === 'complete') { trigger(); }
   else { window.addEventListener('load', trigger); }
+})();
+
+/* ─── MOVIMENTO 2026-11 · par do bloco CSS de mesmo nome ─── */
+(function () {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mouse  = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* etiquetas de seção: filete desenha ao entrar na tela */
+  const labels = document.querySelectorAll('.s-label');
+  if (!reduce && 'IntersectionObserver' in window) {
+    const labIO = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      });
+    }, { threshold: 0.6 });
+    labels.forEach(el => { el.classList.add('mv'); labIO.observe(el); });
+  }
+
+  /* progresso de leitura no filete do menu */
+  const navEl = document.getElementById('nav');
+  if (navEl) {
+    const bar = document.createElement('div');
+    bar.className = 'nav-progress';
+    navEl.appendChild(bar);
+    let ticking = false;
+    function prog() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.setProperty('--prog', max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(prog); ticking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', prog, { passive: true });
+    prog();
+  }
+
+  /* revelação presa à rolagem + profundidade do hero (par do CSS "2 · Revelação PRESA À ROLAGEM") */
+  if (!reduce) {
+    const html = document.documentElement;
+    const SOBE = 34, DESFOQUE = 8, AMORTECE = 0.12;
+    const blocos = Array.from(document.querySelectorAll('.fade-up, .diff-item')).map(el => ({
+      el, cur: 0, tgt: 0,
+      titulo: el.classList.contains('s-heading') || el.classList.contains('contact-heading')
+    }));
+    const heroInner = document.querySelector('.hero-inner');
+    const fotoWrap  = document.querySelector('.hero-foto-wrap');
+    const heroProfundo = window.matchMedia('(min-width: 769px)');
+    const fotoNaDireita = window.matchMedia('(min-width: 1400px)');
+    let vh = window.innerHeight, heroCur = window.scrollY, rodando = false;
+    html.classList.add('sr-on');
+
+    const suave = (p) => 1 - Math.pow(1 - p, 3);
+    function pintar(b) {
+      const e = suave(b.cur);
+      b.el.style.setProperty('--sr-o', e.toFixed(3));
+      b.el.style.setProperty('--sr-y', ((1 - e) * SOBE).toFixed(1) + 'px');
+      if (b.titulo) b.el.style.setProperty('--sr-b', ((1 - e) * DESFOQUE).toFixed(1) + 'px');
+    }
+    function quadro() {
+      let mexendo = false;
+      const faixa = Math.min(vh * 0.32, 280);   /* distância de rolagem para o bloco aparecer inteiro */
+      blocos.forEach(b => {
+        const r = b.el.getBoundingClientRect();
+        if (!r.width && !r.height) { b.tgt = 1; }   /* escondido (ex.: acordeão de projetos no computador) */
+        else {
+          const topo = r.top - (1 - suave(b.cur)) * SOBE;   /* posição sem o deslocamento que eu mesma apliquei */
+          b.tgt = Math.max(0, Math.min(1, (vh - topo) / faixa));
+        }
+        const d = b.tgt - b.cur;
+        if (Math.abs(d) > 0.001) { b.cur += d * AMORTECE; mexendo = true; pintar(b); }
+        else if (b.cur !== b.tgt) { b.cur = b.tgt; pintar(b); }
+      });
+      /* hero: texto e foto sobem em velocidades diferentes e o texto esmaece um pouco ao sair */
+      const y = Math.min(window.scrollY, vh * 1.2);
+      const dh = y - heroCur;
+      if (Math.abs(dh) > 0.3) { heroCur += dh * AMORTECE; mexendo = true; } else heroCur = y;
+      const hy = Math.min(heroCur, vh * 1.2);
+      if (heroInner && heroProfundo.matches) {   /* no celular o hero passa da tela: profundidade desligada */
+        heroInner.style.translate = '0 ' + (hy * 0.14).toFixed(1) + 'px';
+        heroInner.style.opacity = Math.max(0.35, 1 - hy / vh * 0.65).toFixed(3);
+      } else if (heroInner) { heroInner.style.translate = ''; heroInner.style.opacity = ''; }
+      /* a foto só tem profundidade própria quando está na coluna da direita (1400 px ou mais) */
+      /* abaixo de 1400 px a foto fica em cima do nome: acompanha o texto para não se afastar dele */
+      if (fotoWrap) {
+        if (fotoNaDireita.matches) { fotoWrap.style.translate = '0 ' + (hy * 0.24).toFixed(1) + 'px'; fotoWrap.style.opacity = ''; }
+        else if (heroInner && heroProfundo.matches) { fotoWrap.style.translate = heroInner.style.translate; fotoWrap.style.opacity = heroInner.style.opacity; }
+        else { fotoWrap.style.translate = ''; fotoWrap.style.opacity = ''; }
+      }
+      rodando = mexendo;
+      if (mexendo) requestAnimationFrame(quadro);
+    }
+    function acordar() { if (!rodando) { rodando = true; requestAnimationFrame(quadro); } }
+    window.addEventListener('scroll', acordar, { passive: true });
+    window.addEventListener('resize', () => { vh = window.innerHeight; acordar(); }, { passive: true });
+    /* blocos já na tela entram depois do pré-carregamento; abrir acordeão muda alturas */
+    window.jmDepoisDoPreload(acordar);
+    document.addEventListener('click', () => setTimeout(acordar, 60));
+    document.addEventListener('transitionend', acordar);
+  }
+
+  if (reduce || !mouse) return;   /* daqui para baixo só com mouse */
+
+  /* foto inclina levemente seguindo o mouse no hero */
+  const hero = document.getElementById('hero');
+  const anel = document.querySelector('.hero-foto-anel');
+  if (hero && anel) {
+    const MAX = 7;   /* graus */
+    hero.addEventListener('mousemove', (e) => {
+      const r = anel.getBoundingClientRect();
+      const nx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2)));
+      const ny = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2)));
+      anel.style.setProperty('--ry', (nx * MAX).toFixed(2) + 'deg');
+      anel.style.setProperty('--rx', (-ny * MAX).toFixed(2) + 'deg');
+    });
+    hero.addEventListener('mouseleave', () => {
+      anel.style.setProperty('--ry', '0deg');
+      anel.style.setProperty('--rx', '0deg');
+    });
+  }
+
+  /* botões magnéticos: puxam um pouco na direção do cursor */
+  document.querySelectorAll('.btn-fill, .btn-outline, .nav-contact').forEach(btn => {
+    const FORCA = 0.22, LIMITE = 8;   /* px */
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = Math.max(-LIMITE, Math.min(LIMITE, (e.clientX - (r.left + r.width / 2)) * FORCA));
+      const y = Math.max(-LIMITE, Math.min(LIMITE, (e.clientY - (r.top + r.height / 2)) * FORCA));
+      btn.style.transform = 'translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px)';
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
 })();
 </script>
 
